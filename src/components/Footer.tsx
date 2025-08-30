@@ -120,9 +120,14 @@ export default function Footer() {
 							</Link>
 						</div>
 						<div>
-							<p>
+							<p className='text-gray-300 text-sm'>
 								The website was designed and developed by{' '}
-								<Link href='https://abrameltonntsako.web.app'>AEN Nyath</Link>.
+								<Link
+									className='text-blue-300 text-sm'
+									href='https://abrameltonntsako.web.app'>
+									AEN Nyath
+								</Link>
+								.
 							</p>
 						</div>
 					</div>
