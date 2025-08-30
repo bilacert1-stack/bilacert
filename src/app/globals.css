@@ -1,0 +1,101 @@
+@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); */
+
+:root {
+  /* Bilacert Color Palette */
+  --primary-blue: #0A2B4C;
+  --primary-blue-light: #1A4A6B;
+  --secondary-white: #FFFFFF;
+  --secondary-gray: #F8F9FA;
+  --accent-orange: #F2994A;
+  --accent-orange-light: #F4B366;
+  --text-dark: #1A1A1A;
+  --text-gray: #6B7280;
+  --text-light: #9CA3AF;
+  
+  /* Background and foreground */
+  --background: var(--secondary-white);
+  --foreground: var(--text-dark);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  /* Custom Bilacert colors */
+  --color-primary: var(--primary-blue);
+  --color-primary-light: var(--primary-blue-light);
+  --color-secondary: var(--secondary-white);
+  --color-secondary-gray: var(--secondary-gray);
+  --color-accent: var(--accent-orange);
+  --color-accent-light: var(--accent-orange-light);
+  --color-text-dark: var(--text-dark);
+  --color-text-gray: var(--text-gray);
+  --color-text-light: var(--text-light);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom utility classes */
+.text-primary {
+  color: var(--primary-blue);
+}
+
+.bg-primary {
+  background-color: var(--primary-blue);
+}
+
+.text-accent {
+  color: var(--accent-orange);
+}
+
+.bg-accent {
+  background-color: var(--accent-orange);
+}
+
+.bg-secondary-gray {
+  background-color: var(--secondary-gray);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+}
+
+/* Button hover effects */
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue-light);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background-color: var(--accent-orange);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-orange-light);
+  transform: translateY(-1px);
+}
