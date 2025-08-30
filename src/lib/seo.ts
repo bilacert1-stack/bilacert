@@ -17,7 +17,7 @@ export function generateMetadata({
   description,
   keywords = [],
   url,
-  image = '/og-image.jpg',
+  image = '/logo.jpg',
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -104,7 +104,7 @@ export const seoConfigs = {
     ],
     url: '/'
   },
-  
+
   about: {
     title: 'About Us - Bilacert Compliance Experts',
     description: 'Learn about Bilacert, South Africa\'s trusted compliance partner. We simplify ICASA and NRCS approvals with our values of simplicity, clarity, efficiency, and support.',
@@ -116,7 +116,7 @@ export const seoConfigs = {
     ],
     url: '/about'
   },
-  
+
   services: {
     title: 'Our Services - ICASA & NRCS Compliance Solutions',
     description: 'Comprehensive ICASA and NRCS compliance services including type approvals, licensing, and regulatory support. Expert guidance for South African businesses.',
@@ -128,7 +128,7 @@ export const seoConfigs = {
     ],
     url: '/services'
   },
-  
+
   contact: {
     title: 'Contact Us - Get Expert Compliance Guidance',
     description: 'Get in touch with Bilacert for expert ICASA and NRCS compliance guidance. Call 075 430 4433 or email info@bilacert.com for a free consultation.',
@@ -140,7 +140,7 @@ export const seoConfigs = {
     ],
     url: '/contact'
   },
-  
+
   faq: {
     title: 'FAQ - ICASA & NRCS Compliance Questions Answered',
     description: 'Find answers to common questions about ICASA and NRCS compliance, type approvals, licensing, and regulatory requirements in South Africa.',
@@ -152,7 +152,7 @@ export const seoConfigs = {
     ],
     url: '/faq'
   },
-  
+
   blog: {
     title: 'Blog - ICASA & NRCS Compliance Insights',
     description: 'Stay updated with the latest ICASA and NRCS compliance news, guides, and insights. Expert articles on type approvals, licensing, and regulatory changes in South Africa.',
@@ -179,7 +179,7 @@ export const serviceSeoConfigs = {
     ],
     url: '/services/icasa-type-approvals'
   },
-  
+
   'nrcs-loa-applications': {
     title: 'NRCS LOA Applications - Expert Certification Services',
     description: 'Professional NRCS Letter of Authority (LOA) application services for South African businesses. Expert guidance for electrical and electronic product compliance.',
@@ -191,7 +191,7 @@ export const serviceSeoConfigs = {
     ],
     url: '/services/nrcs-loa-applications'
   },
-  
+
   'radio-dealer-licensing': {
     title: 'Radio Dealer Licensing - ICASA License Services',
     description: 'Complete Radio Dealer License services for South African businesses selling radio communication equipment. Expert ICASA licensing support and compliance guidance.',
@@ -203,7 +203,7 @@ export const serviceSeoConfigs = {
     ],
     url: '/services/radio-dealer-licensing'
   },
-  
+
   'class-ecs-ecns-licensing': {
     title: 'Class ECS/ECNS Licensing - Telecommunications License Services',
     description: 'Professional ECS and ECNS licensing services for South African telecommunications providers. Expert guidance for Electronic Communications Service and Network Service licenses.',
@@ -215,7 +215,7 @@ export const serviceSeoConfigs = {
     ],
     url: '/services/class-ecs-ecns-licensing'
   },
-  
+
   'license-exemptions': {
     title: 'License Exemptions - ECS/ECNS Exemption Services',
     description: 'Expert ECS/ECNS license exemption services for South African businesses. We help determine if your business qualifies for ICASA license exemptions and provide compliance documentation.',
@@ -227,7 +227,7 @@ export const serviceSeoConfigs = {
     ],
     url: '/services/license-exemptions'
   },
-  
+
   'ski-boat-vhf-licensing': {
     title: 'Ski Boat VHF Licensing - Marine Radio License Services',
     description: 'Professional VHF radio licensing services for South African marine vessels including ski boats, yachts, and recreational watercraft. Expert ICASA maritime compliance support.',
