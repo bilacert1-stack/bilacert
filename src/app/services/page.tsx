@@ -53,7 +53,7 @@ export default function ServicesPage() {
       icon: <FileText className="h-8 w-8" />,
       href: '/services/nrcs-loa-applications',
       features: ['Product Eligibility Assessment', 'Technical Documentation', 'Testing Coordination', 'Renewals & Amendments'],
-      pricing: 'From R3,500'
+      pricing: 'From R6,500'
     },
     {
       title: 'Radio Dealer Licensing',
@@ -61,7 +61,7 @@ export default function ServicesPage() {
       icon: <Headphones className="h-8 w-8" />,
       href: '/services/radio-dealer-licensing',
       features: ['Eligibility Assessment', 'Application Preparation', 'ICASA Liaison', 'Ongoing Compliance'],
-      pricing: 'From R1,000'
+      pricing: 'From R3,500'
     },
     {
       title: 'Class ECS/ECNS Licensing',
@@ -77,7 +77,7 @@ export default function ServicesPage() {
       icon: <Radio className="h-8 w-8" />,
       href: '/services/license-exemptions',
       features: ['Eligibility Verification', 'Compliance Documentation', 'ICASA Confirmation', 'Ongoing Monitoring'],
-      pricing: 'From R1,000'
+      pricing: 'From R6,800'
     },
     {
       title: 'Ski Boat VHF Licensing',
@@ -85,7 +85,7 @@ export default function ServicesPage() {
       icon: <Ship className="h-8 w-8" />,
       href: '/services/ski-boat-vhf-licensing',
       features: ['Vessel Assessment', 'Application Preparation', 'Maritime Compliance', 'Fleet Licensing'],
-      pricing: 'From R1,800'
+      pricing: 'From R3,500'
     }
   ];
 

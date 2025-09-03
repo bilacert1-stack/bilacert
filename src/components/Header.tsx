@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +48,12 @@ export default function Header() {
 						<Link
 							href='/'
 							className='flex items-center'>
-							<div className='text-2xl font-bold text-primary'>Bilacert</div>
+							<Image
+								src='/logo.png'
+								alt='Bilacert Logo'
+								width={100}
+								height={50}
+							/>
 						</Link>
 					</div>
 
