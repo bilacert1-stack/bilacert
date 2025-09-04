@@ -42,7 +42,7 @@ export default function BlogPage() {
 			readTime: '5 min read',
 			category: 'ICASA Approvals',
 			featured: true,
-			image: '/logo.jpg',
+			image: '/ICASA.png',
 		},
 		{
 			id: 'nrcs-loa-guide',
@@ -55,7 +55,7 @@ export default function BlogPage() {
 			readTime: '7 min read',
 			category: 'NRCS Compliance',
 			featured: false,
-			image: '/logo.jpg',
+			image: '/NRCS.webp',
 		},
 		{
 			id: 'radio-dealer-licensing-guide',
@@ -68,7 +68,7 @@ export default function BlogPage() {
 			readTime: '6 min read',
 			category: 'Licensing',
 			featured: false,
-			image: '/logo.jpg',
+			image: '/radio-dealer-licensing-guide.jpg',
 		},
 		{
 			id: 'ecs-ecns-licensing-explained',
@@ -81,7 +81,7 @@ export default function BlogPage() {
 			readTime: '8 min read',
 			category: 'Telecom Licensing',
 			featured: false,
-			image: '/logo.jpg',
+			image: '/ecs-ecns-licensing-explained.jpeg',
 		},
 		{
 			id: 'compliance-cost-savings',
@@ -94,7 +94,7 @@ export default function BlogPage() {
 			readTime: '4 min read',
 			category: 'Business Strategy',
 			featured: false,
-			image: '/logo.jpg',
+			image: '/compliance-cost-savings.jpg',
 		},
 		{
 			id: 'vhf-licensing-marine',
@@ -107,7 +107,7 @@ export default function BlogPage() {
 			readTime: '5 min read',
 			category: 'Marine Compliance',
 			featured: false,
-			image: '/logo.jpg',
+			image: '/license.png',
 		},
 	];
 
@@ -176,13 +176,12 @@ export default function BlogPage() {
 								</div>
 							</div>
 							<div className='p-8 lg:p-12 flex items-center'>
-								<div className='w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center'>
+								<div className='relative w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center'>
 									<Image
 										src={blogPosts[0].image}
 										alt={blogPosts[0].title}
-										layout='fit'
-										objectFit='cover'
-										className='rounded-lg'
+										fill
+										className='rounded-lg object-cover'
 									/>
 									{/* <span className="text-gray-500">Featured Image</span> */}
 								</div>
@@ -221,8 +220,14 @@ export default function BlogPage() {
 								key={post.id}
 								href={`/blog/${post.id}`}
 								className='bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden'>
-								<div className='h-48 bg-gray-200 flex items-center justify-center'>
-									<span className='text-gray-500'>Blog Image</span>
+								<div className=' relative h-48 bg-gray-200 flex items-center justify-center overflow-hidden'>
+									<Image
+										src={post.image}
+										alt={post.title}
+										fill
+										style={{ objectFit: 'cover' }}
+										className='rounded-lg'
+									/>
 								</div>
 								<div className='p-6'>
 									<div className='flex items-center justify-between mb-3'>
