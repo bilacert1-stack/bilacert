@@ -224,7 +224,7 @@ export default function AboutPage() {
 			</section>
 
 			{/* Team Placeholder */}
-			<section className='py-20 bg-secondary-gray'>
+			{/* <section className='py-20 bg-secondary-gray'>
 				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='text-center mb-16'>
 						<h2 className='text-3xl lg:text-4xl font-bold text-primary mb-4'>Meet Our Team</h2>
@@ -236,7 +236,7 @@ export default function AboutPage() {
 
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
 						{/* Placeholder team members */}
-						{[1, 2, 3].map((member) => (
+						{/* {[1, 2, 3].map((member) => (
 							<div
 								key={member}
 								className='bg-white p-6 rounded-xl shadow-sm text-center'>
@@ -255,7 +255,7 @@ export default function AboutPage() {
 									experience.
 								</p>
 							</div>
-						))}
+						))} */}
 					</div>
 
 					<div className='text-center mt-12'>
@@ -270,7 +270,7 @@ export default function AboutPage() {
 						</a>
 					</div>
 				</div>
-			</section>
+			</section> */}
 
 			{/* CTA Section */}
 			<section className='py-20 bg-gradient-to-r from-primary to-primary-light text-white'>

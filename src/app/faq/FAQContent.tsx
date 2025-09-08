@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import StructuredData from '@/components/StructuredData';
 
@@ -25,7 +26,7 @@ export default function FAQContent() {
         },
         {
           question: 'How long does the compliance process typically take?',
-          answer: 'Processing times vary by service type. ICASA type approvals typically take 30 working days, NRCS LOA applications also take 30 working days, while licensing applications can take 30-60 working days. We work to expedite these processes and keep you informed throughout.'
+          answer: 'Processing times vary by service type. ICASA type approvals typically take 30 working days, NRCS LOA applications also take 30 - 90 working days, while licensing applications can take 30-60 working days. We work to expedite these processes and keep you informed throughout.'
         },
         {
           question: 'Do you work with businesses of all sizes?',
@@ -125,8 +126,10 @@ export default function FAQContent() {
     <div className="min-h-screen">
       <StructuredData type="FAQ" data={faqData} />
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary-light text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-20">
+        <Image src="/get-in-touch.jpg" alt="Frequently Asked Questions" fill priority className="object-cover" />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
               Frequently Asked Questions

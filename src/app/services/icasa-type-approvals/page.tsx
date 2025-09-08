@@ -39,19 +39,19 @@ export default function ICASATypeApprovalsPage() {
       title: 'Standard Type Approval',
       description: 'Required for most telecommunications and radio frequency devices.',
       features: ['Comprehensive testing', 'Full documentation', 'Complete compliance review'],
-      price: 'From R2,000'
+      price: 'From R5,000'
     },
     {
       title: 'Simplified Type Approval',
       description: 'Available for products that meet specific pre-approved conditions.',
       features: ['Streamlined process', 'Reduced documentation', 'Faster approval'],
-      price: 'From R1,500'
+      price: 'From R4,500'
     },
     {
       title: 'Tested & Untested Approvals',
       description: 'We guide you through the decision-making process for the right approval method.',
       features: ['Expert guidance', 'Risk assessment', 'Optimal pathway selection'],
-      price: 'From R1,800'
+      price: 'From R4,500'
     }
   ];
 

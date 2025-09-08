@@ -43,7 +43,7 @@ export default function Footer() {
 							</div>
 							<div className='flex items-center space-x-3'>
 								<Clock className='h-5 w-5 text-accent' />
-								<span>Mon - Fri: 8:00 - 17:00</span>
+								<span>Mon - Fri: 8:00 - 16:30</span>
 							</div>
 						</div>
 					</div>
@@ -121,7 +121,7 @@ export default function Footer() {
 						</div>
 						<div>
 							<p className='text-gray-300 text-sm'>
-								The website was designed and developed by{' '}
+								Developed by{' '}
 								<Link
 									className='text-blue-300 text-sm'
 									href='https://abrameltonntsako.web.app'>

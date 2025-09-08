@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
 	Award,
 	FileText,
@@ -95,7 +96,7 @@ export default function ServicesPage() {
 				'Compliance Support',
 				'Renewals & Updates',
 			],
-			pricing: 'From R1,500',
+			pricing: 'From R7,500',
 		},
 		{
 			title: 'License Exemptions',
@@ -161,8 +162,10 @@ export default function ServicesPage() {
 	return (
 		<div className='min-h-screen'>
 			{/* Hero Section */}
-			<section className='bg-gradient-to-br from-primary to-primary-light text-white py-20'>
-				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+			<section className='relative text-white py-20'>
+				<Image src='/NRCS.jpg' alt='Our Services' fill priority className='object-cover' />
+				<div className='absolute inset-0 bg-black/40' />
+				<div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='text-center'>
 						<h1 className='text-4xl lg:text-5xl font-bold mb-6'>Our Services</h1>
 						<p className='text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto'>

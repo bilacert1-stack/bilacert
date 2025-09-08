@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { 
   Phone, 
   Mail, 
@@ -55,8 +56,10 @@ export default function ContactForm() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary-light text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-20">
+        <Image src="/get-in-touch.jpg" alt="Get in touch" fill priority className="object-cover" />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
               Get in Touch
