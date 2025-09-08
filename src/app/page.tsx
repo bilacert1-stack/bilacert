@@ -113,8 +113,9 @@ export default function HomePage() {
     <div className="min-h-screen">
       <StructuredData type="Organization" data={organizationData} />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary to-primary-light text-white py-20 lg:py-32">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative text-white py-20 lg:py-32">
+        <Image src="/class-ens-ecns.jpg" alt="Bilacert compliance" fill priority className="object-cover" />
+        <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
