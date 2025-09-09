@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 		title: 'About Bilacert - Your Trusted Compliance Partner',
 		description:
 			"Learn about Bilacert, South Africa's trusted compliance partner. We simplify ICASA and NRCS approvals with our values of simplicity, clarity, efficiency, and support.",
-		url: 'https://bilacert.com/about',
+		url: 'https://bilacert.co.za/about',
 		type: 'website',
 	},
 	alternates: {
-		canonical: 'https://bilacert.com/about',
+		canonical: 'https://bilacert.co.za/about',
 	},
 };
 
@@ -95,7 +95,13 @@ export default function AboutPage() {
 		<div className='min-h-screen'>
 			{/* Hero Section */}
 			<section className='relative text-white py-20'>
-				<Image src='/herosetion/About-Us.jpg' alt='About Bilacert' fill priority className='object-cover' />
+				<Image
+					src='/herosetion/About-Us.jpg'
+					alt='About Bilacert'
+					fill
+					priority
+					className='object-cover'
+				/>
 				<div className='absolute inset-0 bg-black/40' />
 				<div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='text-center'>
@@ -225,7 +231,6 @@ export default function AboutPage() {
 				</div>
 			</section>
 
-			
 			{/* CTA Section */}
 			<section className='py-20 bg-gradient-to-r from-primary to-primary-light text-white'>
 				<div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>

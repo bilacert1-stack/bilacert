@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 		title: 'Our Services - ICASA & NRCS Compliance Solutions',
 		description:
 			'Comprehensive ICASA and NRCS compliance services including type approvals, licensing, and regulatory support. Expert guidance for South African businesses.',
-		url: 'https://bilacert.com/services',
+		url: 'https://bilacert.co.za/services',
 		type: 'website',
 	},
 	alternates: {
-		canonical: 'https://bilacert.com/services',
+		canonical: 'https://bilacert.co.za/services',
 	},
 };
 
@@ -163,7 +163,13 @@ export default function ServicesPage() {
 		<div className='min-h-screen'>
 			{/* Hero Section */}
 			<section className='relative text-white py-20'>
-				<Image src='/NRCS.jpg' alt='Our Services' fill priority className='object-cover' />
+				<Image
+					src='/herosetion/Services.jpg'
+					alt='Our Services'
+					fill
+					priority
+					className='object-cover'
+				/>
 				<div className='absolute inset-0 bg-black/40' />
 				<div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='text-center'>

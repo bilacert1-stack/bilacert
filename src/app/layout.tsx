@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 		address: false,
 		telephone: false,
 	},
-	metadataBase: new URL('https://bilacert.com'),
+	metadataBase: new URL('https://bilacert.co.za'),
 	alternates: {
 		canonical: '/',
 	},
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 		title: 'Bilacert - Your Compliance Partner | ICASA & NRCS Approvals',
 		description:
 			'Simplifying ICASA and NRCS compliance for South African businesses. Expert guidance for type approvals, licensing, and regulatory compliance.',
-		url: 'https://bilacert.com',
+		url: 'https://bilacert.co.za',
 		siteName: 'Bilacert',
 		images: [
 			{

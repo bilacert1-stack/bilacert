@@ -20,11 +20,11 @@ export const metadata: Metadata = {
 		title: 'Blog - ICASA & NRCS Compliance Insights',
 		description:
 			'Stay updated with the latest ICASA and NRCS compliance news, guides, and insights. Expert articles on type approvals, licensing, and regulatory changes in South Africa.',
-		url: 'https://bilacert.com/blog',
+		url: 'https://bilacert.co.za/blog',
 		type: 'website',
 	},
 	alternates: {
-		canonical: 'https://bilacert.com/blog',
+		canonical: 'https://bilacert.co.za/blog',
 	},
 };
 
@@ -125,7 +125,13 @@ export default function BlogPage() {
 		<div className='min-h-screen'>
 			{/* Hero Section */}
 			<section className='relative text-white py-20'>
-				<Image src='/get-in-touch.jpg' alt='Compliance Insights & Updates' fill priority className='object-cover' />
+				<Image
+					src='/herosetion/Blog.jpg'
+					alt='Compliance Insights & Updates'
+					fill
+					priority
+					className='object-cover'
+				/>
 				<div className='absolute inset-0 bg-black/40' />
 				<div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='text-center'>

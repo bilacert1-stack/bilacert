@@ -23,7 +23,7 @@ export function generateMetadata({
   modifiedTime,
   author = 'Bilacert'
 }: SEOConfig): Metadata {
-  const baseUrl = 'https://bilacert.com';
+  const baseUrl = 'https://bilacert.co.za';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
   const fullImageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
 
@@ -131,7 +131,7 @@ export const seoConfigs = {
 
   contact: {
     title: 'Contact Us - Get Expert Compliance Guidance',
-    description: 'Get in touch with Bilacert for expert ICASA and NRCS compliance guidance. Call 075 430 4433 or email info@bilacert.com for a free consultation.',
+    description: 'Get in touch with Bilacert for expert ICASA and NRCS compliance guidance. Call 075 430 4433 or email info@bilacert.co.za for a free consultation.',
     keywords: [
       'contact Bilacert',
       'ICASA compliance consultation',

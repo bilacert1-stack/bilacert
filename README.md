@@ -1,6 +1,7 @@
 # Bilacert Website
 
-A modern, professional website for Bilacert - a South African compliance consultancy specializing in ICASA and NRCS LOA approvals.
+A modern, professional website for Bilacert - a South African compliance consultancy specializing in
+ICASA and NRCS LOA approvals.
 
 ## 🚀 Features
 
@@ -26,6 +27,7 @@ A modern, professional website for Bilacert - a South African compliance consult
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js 18.0 or later
 - npm, yarn, or pnpm
 
@@ -115,6 +117,7 @@ The website uses a custom color palette defined in `src/app/globals.css`:
 #### Contact Information
 
 Update contact details in:
+
 - `src/components/Header.tsx` (top bar)
 - `src/components/Footer.tsx` (footer)
 - `src/components/WhatsAppButton.tsx` (WhatsApp number)
@@ -126,12 +129,14 @@ Update contact details in:
 1. **Push to GitHub**: Ensure your code is pushed to a GitHub repository
 
 2. **Connect to Vercel**:
+
    - Go to [vercel.com](https://vercel.com)
    - Sign up/login with your GitHub account
    - Click "New Project"
    - Import your repository
 
 3. **Configure Project**:
+
    - Framework Preset: Next.js
    - Root Directory: `./` (or `bilacert-website` if in subfolder)
    - Build Command: `npm run build`
@@ -141,7 +146,7 @@ Update contact details in:
 
 5. **Custom Domain** (Optional):
    - Go to Project Settings → Domains
-   - Add your custom domain (e.g., `bilacert.com`)
+   - Add your custom domain (e.g., `bilacert.co.za`)
    - Follow DNS configuration instructions
 
 ### Alternative Deployment Options
@@ -165,6 +170,7 @@ The contact form is currently set up for demonstration. To make it functional:
 ### Option 1: Email Service (Recommended)
 
 1. **Use a service like Formspree or Netlify Forms**:
+
    - Sign up for Formspree
    - Get your form endpoint
    - Update the form action in `src/app/contact/page.tsx`
@@ -188,7 +194,7 @@ Create a `.env.local` file for environment-specific variables:
 
 ```env
 # Contact Form
-NEXT_PUBLIC_CONTACT_EMAIL=info@bilacert.com
+NEXT_PUBLIC_CONTACT_EMAIL=info@bilacert.co.za
 NEXT_PUBLIC_PHONE_NUMBER=0754304433
 
 # Analytics (Optional)
@@ -201,6 +207,7 @@ EMAIL_SERVICE_API_KEY=your-email-service-key
 ### SEO Configuration
 
 Update SEO settings in:
+
 - `src/app/layout.tsx` - Global metadata
 - Individual page files - Page-specific metadata
 - `src/app/sitemap.ts` - Sitemap configuration
@@ -255,9 +262,9 @@ npm run type-check
 
 For technical support or questions about the website:
 
-- **Email**: info@bilacert.com
+- **Email**: info@bilacert.co.za
 - **Phone**: 075 430 4433
-- **Website**: [bilacert.com](https://bilacert.com)
+- **Website**: [bilacert.co.za](https://bilacert.co.za)
 
 ## 📄 License
 

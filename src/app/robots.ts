@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://bilacert.com/sitemap.xml',
+    sitemap: 'https://bilacert.co.za/sitemap.xml',
   }
 }
 
