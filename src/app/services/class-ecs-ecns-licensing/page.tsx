@@ -39,21 +39,21 @@ export default function ClassECSECNSLicensingPage() {
       title: 'Basic',
       description: 'Consultation & Application Review',
       features: ['Eligibility assessment', 'Application review', 'Basic guidance'],
-      price: 'R1,500',
+      price: 'R3,000',
       popular: false
     },
     {
       title: 'Standard',
       description: 'Full Documentation Submission & Liaison',
       features: ['Full documentation preparation', 'ICASA submission', 'Liaison & tracking', 'Application management'],
-      price: 'R4,500',
+      price: 'R7,500',
       popular: true
     },
     {
       title: 'Premium',
       description: 'End-to-End Approval & Ongoing Support',
       features: ['Complete end-to-end service', 'Ongoing compliance support', 'Priority processing', 'Renewal management'],
-      price: 'R5,000',
+      price: 'R9,500',
       popular: false
     }
   ];

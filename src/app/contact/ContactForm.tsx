@@ -82,7 +82,7 @@ export default function ContactForm() {
               </div>
               <h3 className="text-xl font-semibold text-primary mb-2">Phone</h3>
               <p className="text-gray-600 mb-2">075 430 4433</p>
-              <p className="text-sm text-gray-500">Mon-Fri 8AM-5PM</p>
+              <p className="text-sm text-gray-500">Mon-Fri 08:00 - 16:30</p>
             </div>
             
             <div className="text-center">
@@ -100,7 +100,7 @@ export default function ContactForm() {
               </div>
               <h3 className="text-xl font-semibold text-primary mb-2">Business Hours</h3>
               <p className="text-gray-600 mb-2">Monday - Friday</p>
-              <p className="text-sm text-gray-500">8:00 AM - 5:00 PM</p>
+              <p className="text-sm text-gray-500">08:00 - 16:30</p>
             </div>
           </div>
 

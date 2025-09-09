@@ -41,21 +41,21 @@ export default function LicenseExemptionsPage() {
       title: 'Basic',
       description: 'Eligibility Assessment',
       features: ['Business model assessment', 'Exemption verification', 'Basic guidance'],
-      price: 'R1,000',
+      price: 'R2,500',
       popular: false
     },
     {
       title: 'Standard',
       description: 'Full Documentation & ICASA Confirmation',
       features: ['Full documentation preparation', 'ICASA confirmation', 'Compliance documentation', 'Verification process'],
-      price: 'R8,000',
+      price: 'R6,800',
       popular: true
     },
     {
       title: 'Premium',
       description: 'End-to-End Exemption Processing',
       features: ['Complete end-to-end service', 'Ongoing compliance support', 'Priority processing', 'Annual compliance review'],
-      price: 'R9,500',
+      price: 'R8,000',
       popular: false
     }
   ];

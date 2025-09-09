@@ -48,14 +48,14 @@ export default function SkiBoatVHFLicensingPage() {
       title: 'Standard',
       description: 'Full Documentation Submission & Liaison',
       features: ['Full documentation preparation', 'ICASA submission', 'Liaison & tracking', 'Application management'],
-      price: 'R2,600',
+      price: 'R3,000',
       popular: true
     },
     {
       title: 'Premium',
       description: 'End-to-End Approval & Ongoing Support',
       features: ['Complete end-to-end service', 'Ongoing compliance support', 'Priority processing', 'Fleet licensing'],
-      price: 'R3,500',
+      price: 'R4,500',
       popular: false
     }
   ];

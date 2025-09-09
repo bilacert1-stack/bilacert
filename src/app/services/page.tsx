@@ -82,7 +82,7 @@ export default function ServicesPage() {
 				'ICASA Liaison',
 				'Ongoing Compliance',
 			],
-			pricing: 'From R3,500',
+			pricing: 'From R3,000',
 		},
 		{
 			title: 'Class ECS/ECNS Licensing',
@@ -124,7 +124,7 @@ export default function ServicesPage() {
 				'Maritime Compliance',
 				'Fleet Licensing',
 			],
-			pricing: 'From R3,500',
+			pricing: 'From R1,800',
 		},
 	];
 

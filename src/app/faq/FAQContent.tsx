@@ -43,11 +43,20 @@ export default function FAQContent() {
         },
         {
           question: 'What is the difference between Standard and Simplified Type Approval?',
-          answer: 'Standard Type Approval is required for most telecommunications and radio frequency devices and involves comprehensive testing. Simplified Type Approval is available for products that meet specific pre-approved conditions and have a faster processing time.'
+          answer: 'Standard Type approval is required for any equipment that has not been type approved before by the Authority. Simplified Type Approval is required for equipment that has already obtained Type approval from the Authority. A representative sample may be required for further evaluation.'
         },
         {
           question: 'Can you help with both tested and untested approvals?',
           answer: 'Yes, we guide clients through the decision-making process for both tested and untested approvals. We help determine which approach is most suitable for your product and manage the entire application process.'
+        }
+      ]
+    },
+    {
+      title: 'Type Approval Basics',
+      questions: [
+        {
+          question: 'What is Type Approval?',
+          answer: 'A process by which Equipment or a device or system is authorized by the Authority to be used in South Africa or imported into South Africa and involves verification of the Equipment compliance with the applicable standards and other regulatory requirements.'
         }
       ]
     },
