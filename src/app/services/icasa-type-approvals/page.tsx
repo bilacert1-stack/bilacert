@@ -111,7 +111,7 @@ export default function ICASATypeApprovalsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative text-white py-20">
-        <Image src="/NRCS.jpg" alt="ICASA Type Approvals" fill priority className="object-cover" />
+        <Image src="/herosetion/Type-Approvals.jpg" alt="ICASA Type Approvals" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

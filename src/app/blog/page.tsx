@@ -55,7 +55,7 @@ export default function BlogPage() {
 			readTime: '7 min read',
 			category: 'NRCS Compliance',
 			featured: false,
-			image: '/NRCS.webp',
+			image: '/NRCS.jpg',
 		},
 		{
 			id: 'radio-dealer-licensing-guide',
@@ -107,7 +107,7 @@ export default function BlogPage() {
 			readTime: '5 min read',
 			category: 'Marine Compliance',
 			featured: false,
-			image: '/license.png',
+			image: '/herosetion/Ski-Boat-VHF.jpg',
 		},
 	];
 
