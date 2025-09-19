@@ -81,7 +81,7 @@ export default function BlogPage() {
 			readTime: '8 min read',
 			category: 'Telecom Licensing',
 			featured: false,
-			image: '/ecs-ecns-licensing-explained.jpeg',
+			image: '/ecs-ecns-licensing-explained.jpg',
 		},
 		{
 			id: 'compliance-cost-savings',
