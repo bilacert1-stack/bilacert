@@ -122,7 +122,7 @@ export default function BlogPage() {
 	];
 
 	return (
-		<div className='min-h-screen'>
+		<div className='min-h-screen w-screen'>
 			{/* Hero Section */}
 			<section className='relative text-white py-20'>
 				<Image
