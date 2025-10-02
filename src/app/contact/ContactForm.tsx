@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { db } from '@/lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function ContactForm() {
 	const [formData, setFormData] = useState({
@@ -21,9 +23,11 @@ export default function ContactForm() {
 		setIsSubmitting(true);
 		setSubmitStatus('idle');
 
-		// Simulate form submission
 		try {
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			await addDoc(collection(db, 'contacts'), {
+				...formData,
+				timestamp: new Date(),
+			});
 			setSubmitStatus('success');
 			setFormData({
 				name: '',
@@ -32,7 +36,8 @@ export default function ContactForm() {
 				service: '',
 				message: '',
 			});
-		} catch {
+		} catch (error) {
+			console.error('Error submitting form: ', error);
 			setSubmitStatus('error');
 		} finally {
 			setIsSubmitting(false);
@@ -229,7 +234,7 @@ export default function ContactForm() {
 										required
 										rows={6}
 										value={formData.message}
-										onChange={handleChange}
+											onChange={handleChange}
 										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
 										placeholder='Tell us about your compliance needs...'
 									/>

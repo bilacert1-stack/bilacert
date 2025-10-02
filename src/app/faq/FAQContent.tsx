@@ -26,7 +26,7 @@ export default function FAQContent() {
 				{
 					question: 'How long does the compliance process typically take?',
 					answer:
-						'Processing times vary by service type. ICASA type approvals typically take 30 working days, NRCS LOA applications also take 30 - 90 working days, while licensing applications can take 30-60 working days. We work to expedite these processes and keep you informed throughout.',
+						'Processing times vary by service type. ICASA type approvals typically take 30 Days, NRCS LOA applications also take 30 - 90 working days, while licensing applications can take 30-60 working days. We work to expedite these processes and keep you informed throughout.',
 				},
 				{
 					question: 'Do you work with businesses of all sizes?',

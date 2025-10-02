@@ -99,7 +99,7 @@ export default function RadioDealerLicensingPage() {
 	const benefits = [
 		{
 			icon: <Clock className='h-6 w-6' />,
-			title: '30 Working Days',
+			title: '30 Days',
 			description: 'Standard processing time with our streamlined approach.',
 		},
 		{
@@ -148,7 +148,7 @@ export default function RadioDealerLicensingPage() {
 							</p>
 							<div className='flex flex-col sm:flex-row gap-4'>
 								<Link
-									href='/contact'
+									href='/forms/radio-dealer-licensing'
 									className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1 text-center'>
 									Get Free Consultation
 								</Link>
@@ -166,7 +166,7 @@ export default function RadioDealerLicensingPage() {
 										<CheckCircle className='h-6 w-6 text-white' />
 									</div>
 									<div>
-										<h3 className='font-semibold'>30 Working Days</h3>
+										<h3 className='font-semibold'>30 Days</h3>
 										<p className='text-gray-300'>Standard processing time</p>
 									</div>
 								</div>
@@ -342,7 +342,7 @@ export default function RadioDealerLicensingPage() {
 									))}
 								</ul>
 								<Link
-									href='/contact'
+									href='/forms/radio-dealer-licensing'
 									className={`w-full px-4 py-3 rounded-lg font-medium text-center transition-colors duration-200 ${
 										plan.popular
 											? 'bg-accent text-white hover:bg-accent-light'
@@ -421,7 +421,7 @@ export default function RadioDealerLicensingPage() {
 					</p>
 					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 						<Link
-							href='/contact'
+							href='/forms/radio-dealer-licensing'
 							className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1'>
 							Get Free Consultation
 						</Link>

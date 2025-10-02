@@ -132,9 +132,9 @@ export default function ICASATypeApprovalsPage() {
 							</p>
 							<div className='flex flex-col sm:flex-row gap-4'>
 								<Link
-									href='/contact'
+									href='/forms/icasa-type-approvals'
 									className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1 text-center'>
-									Get Free Consultation
+									Get Started
 								</Link>
 								<Link
 									href='tel:0754304433'
@@ -150,7 +150,7 @@ export default function ICASATypeApprovalsPage() {
 										<CheckCircle className='h-6 w-6 text-white' />
 									</div>
 									<div>
-										<h3 className='font-semibold'>30 Working Days</h3>
+										<h3 className='font-semibold'>30 Days</h3>
 										<p className='text-gray-300'>Standard processing time</p>
 									</div>
 								</div>
@@ -262,7 +262,7 @@ export default function ICASATypeApprovalsPage() {
 								</ul>
 								<div className='text-lg font-semibold text-primary mb-4'>{type.price}</div>
 								<Link
-									href='/contact'
+									href='/forms/icasa-type-approvals'
 									className='w-full bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-light transition-colors duration-200 text-center inline-block'>
 									Get Started
 								</Link>
@@ -338,9 +338,9 @@ export default function ICASATypeApprovalsPage() {
 					</p>
 					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 						<Link
-							href='/contact'
+							href='/forms/icasa-type-approvals'
 							className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1'>
-							Get Free Consultation
+							Get Started
 						</Link>
 						<Link
 							href='tel:0754304433'
