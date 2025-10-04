@@ -99,7 +99,7 @@ export default function RadioDealerLicensingPage() {
 	const benefits = [
 		{
 			icon: <Clock className='h-6 w-6' />,
-			title: '30 working Days',
+			title: '30 Days',
 			description: 'Standard processing time with our streamlined approach.',
 		},
 		{
