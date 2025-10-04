@@ -98,7 +98,7 @@ export default function NRCSLOAApplicationsPage() {
 	const benefits = [
 		{
 			icon: <Clock className='h-6 w-6' />,
-			title: '30 Days',
+			title: '30 working Days',
 			description: 'Standard processing time with our efficient approach.',
 		},
 		{
@@ -165,7 +165,7 @@ export default function NRCSLOAApplicationsPage() {
 										<CheckCircle className='h-6 w-6 text-white' />
 									</div>
 									<div>
-										<h3 className='font-semibold'>30 Days</h3>
+										<h3 className='font-semibold'>120 Days</h3>
 										<p className='text-gray-300'>Standard processing time</p>
 									</div>
 								</div>
