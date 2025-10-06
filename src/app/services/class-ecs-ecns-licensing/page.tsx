@@ -140,7 +140,7 @@ export default function ClassECSECNSLicensingPage() {
 							</p>
 							<div className='flex flex-col sm:flex-row gap-4'>
 								<Link
-									href='/forms/class-ecs-ecns-licening'
+									href='/forms/class-ecs-ecns-licensing'
 									className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1 text-center'>
 									Get Free Consultation
 								</Link>
@@ -334,7 +334,7 @@ export default function ClassECSECNSLicensingPage() {
 									))}
 								</ul>
 								<Link
-									href='/forms/class-ecs-ecns-licening'
+									href='/forms/class-ecs-ecns-licensing'
 									className={`w-full px-4 py-3 rounded-lg font-medium text-center transition-colors duration-200 ${
 										plan.popular
 											? 'bg-accent text-white hover:bg-accent-light'
@@ -414,7 +414,7 @@ export default function ClassECSECNSLicensingPage() {
 					</p>
 					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 						<Link
-							href='/forms/class-ecs-ecns-licening'
+							href='/forms/class-ecs-ecns-licensing'
 							className='bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-light transition-all duration-200 transform hover:-translate-y-1'>
 							Get Free Consultation
 						</Link>
