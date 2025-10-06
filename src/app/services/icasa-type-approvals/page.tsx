@@ -33,13 +33,13 @@ export default function ICASATypeApprovalsPage() {
 	const approvalTypes = [
 		{
 			title: 'Standard Type Approval',
-			description: 'Required for most telecommunications and radio frequency devices.',
+			description: 'Required for any equipment that has not been type approved before by the Authority',
 			features: ['Comprehensive testing', 'Full documentation', 'Complete compliance review'],
 			price: 'From R5,000',
 		},
 		{
 			title: 'Simplified Type Approval',
-			description: 'Available for products that meet specific pre-approved conditions.',
+			description: 'Available for products that already obtained type Approval from Authority',
 			features: ['Streamlined process', 'Reduced documentation', 'Faster approval'],
 			price: 'From R4,500',
 		},

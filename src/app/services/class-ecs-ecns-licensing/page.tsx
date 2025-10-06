@@ -158,7 +158,7 @@ export default function ClassECSECNSLicensingPage() {
 										<CheckCircle className='h-6 w-6 text-white' />
 									</div>
 									<div>
-										<h3 className='font-semibold'>30 Days</h3>
+										<h3 className='font-semibold'>30 working Days</h3>
 										<p className='text-gray-300'>Standard processing time</p>
 									</div>
 								</div>

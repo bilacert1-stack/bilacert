@@ -123,7 +123,7 @@ export default function LicenseExemptionsPage() {
 			{/* Hero Section */}
 			<section className='relative text-white py-20'>
 				<Image
-					src='/license-exemptions.jpg'
+					src='/ecs-ecns-licensing-explained.jpg'
 					alt='License Exemptions'
 					fill
 					priority
@@ -165,7 +165,7 @@ export default function LicenseExemptionsPage() {
 										<CheckCircle className='h-6 w-6 text-white' />
 									</div>
 									<div>
-										<h3 className='font-semibold'>30 Days</h3>
+										<h3 className='font-semibold'>30 wroking Days</h3>
 										<p className='text-gray-300'>Standard processing time</p>
 									</div>
 								</div>

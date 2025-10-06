@@ -162,24 +162,7 @@ export default function LicenseExemptionsForm() {
 							/>
 						</div>
 					</div>
-					<div>
-						<label
-							htmlFor='deviceDescription'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Device Description *
-						</label>
-						<textarea
-							id='deviceDescription'
-							name='deviceDescription'
-							required
-							rows={4}
-							value={formData.deviceDescription}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-							placeholder='Briefly describe the device and its intended use'
-						/>
-					</div>
-
+					
 					<div>
 						<label
 							htmlFor='message'

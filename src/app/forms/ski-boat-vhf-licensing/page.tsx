@@ -151,7 +151,7 @@ export default function SkiBoatVhfLicensingForm() {
 							<label
 								htmlFor='boatName'
 								className='block text-sm font-medium text-gray-700 mb-2'>
-								Boat Name *
+								Ski Boat Name *
 							</label>
 							<input
 								type='text'
@@ -164,23 +164,7 @@ export default function SkiBoatVhfLicensingForm() {
 								placeholder='e.g., Sea Serpent'
 							/>
 						</div>
-						<div>
-							<label
-								htmlFor='boatRegistration'
-								className='block text-sm font-medium text-gray-700 mb-2'>
-								Boat Registration Number *
-							</label>
-							<input
-								type='text'
-								id='boatRegistration'
-								name='boatRegistration'
-								required
-								value={formData.boatRegistration}
-								onChange={handleChange}
-								className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-								placeholder='e.g., ZT12345'
-							/>
-						</div>
+						
 					</div>
 
 					<div>
