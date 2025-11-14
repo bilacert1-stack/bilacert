@@ -17,7 +17,7 @@ export default async  function BlogPost({ params }: { params: Promise<{ slug: st
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      {params.slug }
+    
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
