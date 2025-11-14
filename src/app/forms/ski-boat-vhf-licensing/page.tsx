@@ -10,8 +10,7 @@ export default function SkiBoatVhfLicensingForm() {
 		name: '',
 		email: '',
 		phone: '',
-		boatName: '',
-		boatRegistration: '',
+		company: '',
 		message: '',
 	});
 
@@ -33,8 +32,7 @@ export default function SkiBoatVhfLicensingForm() {
 				name: '',
 				email: '',
 				phone: '',
-				boatName: '',
-				boatRegistration: '',
+				company: '',
 				message: '',
 			});
 		} catch (error) {
@@ -145,26 +143,22 @@ export default function SkiBoatVhfLicensingForm() {
 								placeholder='+27 XX XXX XXXX'
 							/>
 						</div>
-					</div>
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 						<div>
 							<label
-								htmlFor='boatName'
+								htmlFor='company'
 								className='block text-sm font-medium text-gray-700 mb-2'>
-								Ski Boat Name *
+								Company Name
 							</label>
 							<input
 								type='text'
-								id='boatName'
-								name='boatName'
-								required
-								value={formData.boatName}
+								id='company'
+								name='company'
+								value={formData.company}
 								onChange={handleChange}
 								className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-								placeholder='e.g., Sea Serpent'
+								placeholder='Your company name'
 							/>
 						</div>
-						
 					</div>
 
 					<div>

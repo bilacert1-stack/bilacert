@@ -11,7 +11,6 @@ export default function LicenseExemptionsForm() {
 		email: '',
 		phone: '',
 		company: '',
-		deviceDescription: '',
 		message: '',
 	});
 
@@ -34,7 +33,6 @@ export default function LicenseExemptionsForm() {
 				email: '',
 				phone: '',
 				company: '',
-				deviceDescription: '',
 				message: '',
 			});
 		} catch (error) {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import Image from 'next/image';
+import { blogPosts } from '@/lib/blog-data';
 
 export const metadata: Metadata = {
 	title: 'Blog',
@@ -29,88 +30,6 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-	// Sample blog posts - in a real app, these would come from a CMS or MDX files
-	const blogPosts = [
-		{
-			id: 'icasa-type-approval-requirements',
-			title: 'Understanding ICASA Type Approval Requirements',
-			excerpt:
-				'A comprehensive guide to ICASA type approval requirements for South African businesses. Learn about the different types of approvals and how to navigate the process.',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2024-01-15',
-			readTime: '5 min read',
-			category: 'ICASA Approvals',
-			featured: true,
-			image: '/ICASA.png',
-		},
-		{
-			id: 'nrcs-loa-guide',
-			title: 'NRCS LOA: What You Need to Know',
-			excerpt:
-				'Everything you need to know about NRCS Letter of Authority applications. From eligibility to the application process, we cover it all.',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2024-01-10',
-			readTime: '7 min read',
-			category: 'NRCS Compliance',
-			featured: false,
-			image: '/NRCS.jpg',
-		},
-		{
-			id: 'radio-dealer-licensing-guide',
-			title: 'Radio Dealer Licensing Made Simple',
-			excerpt:
-				'Step-by-step guide to obtaining your Radio Dealer License from ICASA. Avoid common pitfalls and ensure a smooth application process.',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2024-01-05',
-			readTime: '6 min read',
-			category: 'Licensing',
-			featured: false,
-			image: '/radio-dealer-licensing-guide.jpg',
-		},
-		{
-			id: 'ecs-ecns-licensing-explained',
-			title: 'ECS/ECNS Licensing Explained',
-			excerpt:
-				'Understanding the difference between Electronic Communications Service and Network Service licenses. Which one does your business need?',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2024-01-01',
-			readTime: '8 min read',
-			category: 'Telecom Licensing',
-			featured: false,
-			image: '/ecs-ecns-licensing-explained.jpg',
-		},
-		{
-			id: 'compliance-cost-savings',
-			title: 'How Proper Compliance Saves Your Business Money',
-			excerpt:
-				'Learn how investing in proper compliance upfront can save your business thousands in penalties and avoid costly delays.',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2023-12-28',
-			readTime: '4 min read',
-			category: 'Business Strategy',
-			featured: false,
-			image: '/compliance-cost-savings.jpg',
-		},
-		{
-			id: 'vhf-licensing-marine',
-			title: 'VHF Licensing for Marine Operations',
-			excerpt:
-				'Complete guide to VHF radio licensing for marine vessels. From recreational boats to commercial fleets, ensure your vessels are compliant.',
-			content: 'Full content would be here...',
-			author: 'Bilacert Team',
-			date: '2023-12-25',
-			readTime: '5 min read',
-			category: 'Marine Compliance',
-			featured: false,
-			image: '/herosetion/Ski-Boat-VHF.jpg',
-		},
-	];
-
 	const categories = [
 		'All',
 		'ICASA Approvals',
@@ -191,7 +110,6 @@ export default function BlogPage() {
 										fill
 										className='rounded-lg object-cover'
 									/>
-									{/* <span className="text-gray-500">Featured Image</span> */}
 								</div>
 							</div>
 						</div>

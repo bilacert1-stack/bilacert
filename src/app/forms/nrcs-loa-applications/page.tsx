@@ -11,8 +11,6 @@ export default function NrcsLoaForm() {
 		email: '',
 		phone: '',
 		company: '',
-		productName: '',
-		productDescription: '',
 		message: '',
 	});
 
@@ -35,8 +33,6 @@ export default function NrcsLoaForm() {
 				email: '',
 				phone: '',
 				company: '',
-				productName: '',
-				productDescription: '',
 				message: '',
 			});
 		} catch (error) {
@@ -163,41 +159,6 @@ export default function NrcsLoaForm() {
 								placeholder='Your company name'
 							/>
 						</div>
-					</div>
-					<div>
-						<label
-							htmlFor='productName'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Product Name/Model *
-						</label>
-						<input
-							type='text'
-							id='productName'
-							name='productName'
-							required
-							value={formData.productName}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-							placeholder='e.g., SmartWidget X1'
-						/>
-					</div>
-
-					<div>
-						<label
-							htmlFor='productDescription'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Product Description *
-						</label>
-						<textarea
-							id='productDescription'
-							name='productDescription'
-							required
-							rows={4}
-							value={formData.productDescription}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-							placeholder='Briefly describe the product and its function'
-						/>
 					</div>
 
 					<div>

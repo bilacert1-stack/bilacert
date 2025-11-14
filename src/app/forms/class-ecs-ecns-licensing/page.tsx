@@ -11,7 +11,6 @@ export default function ClassEcsEcnsLicensingForm() {
 		email: '',
 		phone: '',
 		company: '',
-		licenseType: '',
 		message: '',
 	});
 
@@ -34,7 +33,6 @@ export default function ClassEcsEcnsLicensingForm() {
 				email: '',
 				phone: '',
 				company: '',
-				licenseType: '',
 				message: '',
 			});
 		} catch (error) {
@@ -46,7 +44,7 @@ export default function ClassEcsEcnsLicensingForm() {
 	};
 
 	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
 		setFormData({
 			...formData,
@@ -161,24 +159,6 @@ export default function ClassEcsEcnsLicensingForm() {
 								placeholder='Your company name'
 							/>
 						</div>
-					</div>
-					<div>
-						<label
-							htmlFor='licenseType'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							License Type *
-						</label>
-						<select
-							id='licenseType'
-							name='licenseType'
-							required
-							value={formData.licenseType}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'>
-							<option value=''>Select a license type</option>
-							<option value='ecs'>Class ECS License</option>
-							<option value='ecns'>Class ECNS License</option>
-						</select>
 					</div>
 
 					<div>

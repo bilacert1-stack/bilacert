@@ -11,9 +11,6 @@ export default function IcasasForm() {
 		email: '',
 		phone: '',
 		company: '',
-		productName: '',
-		productDescription: '',
-		approvalType: '',
 		message: '',
 	});
 
@@ -36,9 +33,6 @@ export default function IcasasForm() {
 				email: '',
 				phone: '',
 				company: '',
-				productName: '',
-				productDescription: '',
-				approvalType: '',
 				message: '',
 			});
 		} catch (error) {
@@ -50,7 +44,7 @@ export default function IcasasForm() {
 	};
 
 	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
 		setFormData({
 			...formData,
@@ -165,62 +159,6 @@ export default function IcasasForm() {
 								placeholder='Your company name'
 							/>
 						</div>
-					</div>
-					<div>
-						<label
-							htmlFor='productName'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Product Name/Model *
-						</label>
-						<input
-							type='text'
-							id='productName'
-							name='productName'
-							required
-							value={formData.productName}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-							placeholder='e.g., SmartWidget X1'
-						/>
-					</div>
-
-					<div>
-						<label
-							htmlFor='productDescription'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Product Description *
-						</label>
-						<textarea
-							id='productDescription'
-							name='productDescription'
-							required
-							rows={4}
-							value={formData.productDescription}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'
-							placeholder='Briefly describe the product and its function'
-						/>
-					</div>
-
-					<div>
-						<label
-							htmlFor='approvalType'
-							className='block text-sm font-medium text-gray-700 mb-2'>
-							Type of Approval *
-						</label>
-						<select
-							id='approvalType'
-							name='approvalType'
-							required
-							value={formData.approvalType}
-							onChange={handleChange}
-							className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent'>
-							<option value=''>Select an approval type</option>
-							<option value='standard'>Standard Type Approval</option>
-							<option value='simplified'>Simplified Type Approval</option>
-							<option value='tested'>Tested Approval</option>
-							<option value='untested'>Untested Approval</option>
-						</select>
 					</div>
 
 					<div>
