@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { cookies } from 'next/headers';
+
+// 1. Force dynamic rendering so cookies() can be used safely
+export const dynamic = 'force-dynamic';
 
 interface BlogPost {
   id: string;
@@ -18,18 +20,11 @@ interface BlogPost {
   created_at: Date;
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
-  // Initialize Supabase
-  const cookieStore = await cookies();
+  // 2. Initialize Supabase (createClient internaly handles cookies() now)
   const supabase = await createClient();
-
-  // FIX: Type Guard to ensure supabase isn't an Error object
-  if (supabase instanceof Error) {
-    console.error("Supabase client error:", supabase.message);
-    return notFound();
-  }
 
   const { data: postData } = await supabase
     .from('blog_posts')
@@ -37,12 +32,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     .eq('id', slug)
     .single();
 
-  const post = postData as BlogPost;
-
-  if (!post) {
+  if (!postData) {
     notFound();
   }
 
+  const post = postData as BlogPost;
   const dateObj = post.date ? new Date(post.date) : new Date();
 
   return (
@@ -106,42 +100,21 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="py-12 bg-secondary-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              Found this helpful?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Share this article with others who might benefit from this information.
-            </p>
+            <h3 className="text-2xl font-bold text-primary mb-4">Found this helpful?</h3>
             <div className="flex justify-center space-x-4 mb-8">
-              <button className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200">
+              <button className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                 <Share2 className="h-4 w-4" />
                 <span>Share</span>
               </button>
             </div>
             <div className="border-t pt-8">
-              <h4 className="text-xl font-semibold text-primary mb-4">
-                Need Help with Your Compliance?
-              </h4>
-              <p className="text-gray-600 mb-6">
-                Our experts are here to help you navigate the compliance process and ensure your business stays compliant.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-light transition-colors duration-200"
-                >
-                  Get Free Consultation
-                </Link>
-                <Link
-                  href="/services"
-                  className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors duration-200"
-                >
-                  View Our Services
-                </Link>
-              </div>
+              <Link href="/contact" className="bg-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">
+                Get Free Consultation
+              </Link>
             </div>
           </div>
         </div>
@@ -150,20 +123,4 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   );
 }
 
-export async function generateStaticParams() {
-  const supabase = await createClient();
-  
-  // FIX: Type Guard for static params too
-  if (supabase instanceof Error) return [];
-
-  const { data: posts } = await supabase
-    .from('blog_posts')
-    .select('id');
-
-  if (!posts) return [];
-
-  return (posts as Pick<BlogPost, 'id'>[]).map((post) => ({
-    slug: post.id,
-  }));
-}
-export const dynamic = 'force-dynamic';
+// 3. REMOVED generateStaticParams because it conflicts with cookies()
