@@ -166,3 +166,4 @@ export async function generateStaticParams() {
     slug: post.id,
   }));
 }
+export const dynamic = 'force-dynamic';
