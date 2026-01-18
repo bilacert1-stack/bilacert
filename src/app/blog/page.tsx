@@ -4,6 +4,20 @@ import { Calendar, ArrowRight, User } from 'lucide-react';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 
+// 1. Define the interface for your post data
+interface BlogPost {
+	id: string;
+	title: string;
+	excerpt: string;
+	content: string;
+	author: string;
+	date: string; // DATE from Postgres usually comes as a string (YYYY-MM-DD)
+	read_time: string;
+	category: string;
+	featured: boolean;
+	image: string;
+}
+
 export const metadata: Metadata = {
 	title: 'Blog',
 	description:
@@ -41,12 +55,17 @@ export default async function BlogPage() {
 	];
 
 	const supabase = await createClient();
-	const { data: blogPosts } = await supabase
+	
+	// 2. Add Type Casting to the Supabase response
+	const { data: blogPostsData } = await supabase
 		.from('blog_posts')
 		.select('*')
 		.order('date', { ascending: false });
 
-	if (!blogPosts || blogPosts.length === 0) {
+	// Use the interface to type the array
+	const blogPosts = (blogPostsData as BlogPost[]) || [];
+
+	if (blogPosts.length === 0) {
 		return <div className="min-h-screen text-center py-20">No blog posts found.</div>;
 	}
 
@@ -149,9 +168,9 @@ export default async function BlogPage() {
 						))}
 					</div>
 
-					{/* Posts Grid */}
+					{/* Posts Grid - 3. Types are now inferred correctly here */}
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-						{blogPosts.slice(1).map((post) => (
+						{blogPosts.slice(1).map((post: BlogPost) => (
 							<Link
 								key={post.id}
 								href={`/blog/${post.id}`}
