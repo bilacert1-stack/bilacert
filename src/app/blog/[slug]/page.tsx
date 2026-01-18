@@ -14,7 +14,19 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     .eq('id', slug)
     .single();
 
-  const post: any = postData;
+  const post: {
+      id:string,
+  title:string,
+  excerpt :string,
+  content :string,
+  author :string,
+  date Date(),
+  read_time:string
+  category :string,
+  featured: boolean,
+  image:string,
+  created_at NOW()
+  }= postData;
 
   if (!post) {
     notFound();
