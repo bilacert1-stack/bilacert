@@ -1,8 +1,13 @@
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@supabase/supabase-js'
 
-export const createClient = async () => {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-    return createClient(supabaseUrl, supabaseAnonKey)
+export function createClient() {
+  if(!supabaseUrl || !supabaseAnonKey){
+    return new error("no: supabaseUrl or supabaseAnonKey")
+  }
+    return createServerClient(
+        supabaseUrl!, supabaseAnonKey!
+    )
 }
