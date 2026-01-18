@@ -146,9 +146,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
 export async function generateStaticParams() {
   const supabase = await createClient();
-  const { data: posts } = await supabase.from('blog_posts').select('id');
+const { data: posts } = await supabase
+    .from('blog_posts')
+    .select('id');
 
-  return posts?.map((posts as Pick<BlogPost, 'id'>[]) => ({
-    slug: post.id,
-  })) || [];
+// Explicitly type the map parameter if not using Supabase generated types
+return (posts as Pick<BlogPost, 'id'>[])?.map((post) => ({
+  slug: post.id,
+})) || [];
 }
