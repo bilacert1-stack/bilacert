@@ -4,7 +4,6 @@ import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 
-// 1. Define the interface for your post data
 interface BlogPost {
   id: string;
   title: string;
@@ -21,9 +20,16 @@ interface BlogPost {
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  // Initialize Supabase (cookies usage ensures dynamic fetching if needed)
-  await cookies(); 
+  
+  // Initialize Supabase
+  const cookieStore = await cookies();
   const supabase = await createClient();
+
+  // FIX: Type Guard to ensure supabase isn't an Error object
+  if (supabase instanceof Error) {
+    console.error("Supabase client error:", supabase.message);
+    return notFound();
+  }
 
   const { data: postData } = await supabase
     .from('blog_posts')
@@ -31,20 +37,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     .eq('id', slug)
     .single();
 
-  // 2. Cast the data to our interface
   const post = postData as BlogPost;
 
   if (!post) {
     notFound();
   }
 
-  // 3. Safer Date Parsing
-  // Handles YYYY-MM-DD strings from Supabase DATE column
   const dateObj = post.date ? new Date(post.date) : new Date();
 
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
@@ -57,7 +59,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
-      {/* Article Header */}
       <section className="py-12 bg-secondary-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -94,7 +95,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      {/* Article Content */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-sm p-8 lg:p-12">
@@ -106,7 +106,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      {/* Share & CTA */}
       <section className="py-12 bg-secondary-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -151,9 +150,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   );
 }
 
-// 4. Fixed generateStaticParams with explicit typing
 export async function generateStaticParams() {
   const supabase = await createClient();
+  
+  // FIX: Type Guard for static params too
+  if (supabase instanceof Error) return [];
+
   const { data: posts } = await supabase
     .from('blog_posts')
     .select('id');
