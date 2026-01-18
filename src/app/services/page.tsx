@@ -16,6 +16,18 @@ import {
 import { createClient } from '@/lib/supabase/server';
 import React from 'react';
 
+// 1. Define the interface for your Service data
+interface Service {
+	id: string;
+	title: string;
+	description: string;
+	icon: string; // The name of the icon as a string from DB
+	features: string[];
+	pricing: string;
+	href: string;
+	created_at: string;
+}
+
 export const metadata: Metadata = {
 	title: 'Our Services',
 	description:
@@ -44,10 +56,14 @@ export const metadata: Metadata = {
 
 export default async function ServicesPage() {
 	const supabase = await createClient();
-	const { data: servicesData } = await supabase
+	
+	// 2. Fetch data and cast it to our Service interface
+	const { data: servicesDataRaw } = await supabase
 		.from('services')
 		.select('*')
 		.order('created_at', { ascending: true });
+
+	const servicesData = (servicesDataRaw as Service[]) || [];
 
 	const iconMap: Record<string, React.ElementType> = {
 		Award,
@@ -58,7 +74,8 @@ export default async function ServicesPage() {
 		Ship,
 	};
 
-	const services = servicesData?.map((service) => ({
+	// 3. The 'service' parameter is now correctly typed
+	const services = servicesData.map((service: Service) => ({
 		...service,
 		icon: iconMap[service.icon] ? (
 			// @ts-ignore - Dynamic icon rendering
@@ -66,7 +83,7 @@ export default async function ServicesPage() {
 		) : (
 			<Award className='h-8 w-8' />
 		),
-	})) || [];
+	}));
 
 	const process = [
 		{
