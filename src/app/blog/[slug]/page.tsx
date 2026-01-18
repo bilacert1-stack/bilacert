@@ -32,7 +32,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
-  const [year, month, day] = post.date..toString().split('-').map(Number);
+  const [year, month, day] = post.date.toString().split('-').map(Number);
   const date = new Date(year, month - 1, day);
 
   return (
