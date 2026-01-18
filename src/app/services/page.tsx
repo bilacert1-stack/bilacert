@@ -56,6 +56,12 @@ export const metadata: Metadata = {
 
 export default async function ServicesPage() {
 	const supabase = await createClient();
+
+	// FIX: Add Type Guard to ensure supabase is not an Error
+	if (supabase instanceof Error) {
+		console.error("Supabase client error:", supabase.message);
+		return <div className="min-h-screen text-center py-20">Unable to load services. Please try again later.</div>;
+	}
 	
 	// 2. Fetch data and cast it to our Service interface
 	const { data: servicesDataRaw } = await supabase
@@ -74,7 +80,6 @@ export default async function ServicesPage() {
 		Ship,
 	};
 
-	// 3. The 'service' parameter is now correctly typed
 	const services = servicesData.map((service: Service) => ({
 		...service,
 		icon: iconMap[service.icon] ? (
@@ -231,7 +236,7 @@ export default async function ServicesPage() {
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<Users className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><Users /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Expert Guidance</h3>
 							<p className='text-gray-600'>
@@ -242,7 +247,7 @@ export default async function ServicesPage() {
 
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<Clock className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><Clock /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Fast & Efficient</h3>
 							<p className='text-gray-600'>
@@ -253,7 +258,7 @@ export default async function ServicesPage() {
 
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<CheckCircle className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><CheckCircle /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Guaranteed Success</h3>
 							<p className='text-gray-600'>
