@@ -8,6 +8,12 @@ export default function Testimonials() {
     const supabase = createClient();
 
     useEffect(() => {
+        // FIX: Narrow the type to ensure supabase is not an Error
+        if (supabase instanceof Error) {
+            console.error("Supabase client initialization failed:", supabase.message);
+            return;
+        }
+
         const fetchTestimonials = async () => {
             const { data, error } = await supabase
                 .from('testimonials')
@@ -70,7 +76,6 @@ export default function Testimonials() {
                             data-width="500"
                             data-show-text="true"
                         >
-                            {/* CHANGED: blockquoteCite to blockquote */}
                             <blockquote cite={t.post_url} className="fb-xfbml-parse-ignore">
                                 <a href={t.post_url}>Post</a>
                             </blockquote>
