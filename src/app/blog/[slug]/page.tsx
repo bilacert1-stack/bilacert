@@ -2,10 +2,12 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
+import { cookies } from 'next/headers'
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const supabase = await createClient();
+  const cookieStore = await cookies()
+  const supabase = await createClient(cookieStore);
   const { data: postData } = await supabase
     .from('blog_posts')
     .select('*')
