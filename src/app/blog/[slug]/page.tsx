@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const cookieStore = await cookies()
-  const supabase = await createClient(cookieStore);
+  const supabase = await createClient();
   const { data: postData } = await supabase
     .from('blog_posts')
     .select('*')
