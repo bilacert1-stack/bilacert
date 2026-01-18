@@ -2,44 +2,49 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 
+// 1. Define the interface for your post data
 interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
   content: string;
   author: string;
-  date: string | Date; // Database dates often come back as strings
+  date: string | Date;
   read_time: string;
   category: string;
   featured: boolean;
   image: string;
   created_at: Date;
 }
+
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const cookieStore = await cookies()
+  const { slug } = await params;
+  // Initialize Supabase (cookies usage ensures dynamic fetching if needed)
+  await cookies(); 
   const supabase = await createClient();
+
   const { data: postData } = await supabase
     .from('blog_posts')
     .select('*')
     .eq('id', slug)
     .single();
 
-  const post:BlogPost= postData;
+  // 2. Cast the data to our interface
+  const post = postData as BlogPost;
 
   if (!post) {
     notFound();
   }
 
-  const [year, month, day] = post.date.toString().split('-').map(Number);
-  const date = new Date(year, month - 1, day);
+  // 3. Safer Date Parsing
+  // Handles YYYY-MM-DD strings from Supabase DATE column
+  const dateObj = post.date ? new Date(post.date) : new Date();
 
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
@@ -72,11 +77,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
               <div className="flex items-center space-x-2">
                 <Calendar className="h-5 w-5" />
-                <span>{date.toLocaleDateString('en-ZA', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}</span>
+                <span>
+                  {dateObj.toLocaleDateString('en-ZA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock className="h-5 w-5" />
@@ -144,14 +151,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   );
 }
 
+// 4. Fixed generateStaticParams with explicit typing
 export async function generateStaticParams() {
   const supabase = await createClient();
-const { data: posts } = await supabase
+  const { data: posts } = await supabase
     .from('blog_posts')
     .select('id');
 
-// Explicitly type the map parameter if not using Supabase generated types
-return (posts as Pick<BlogPost, 'id'>[])?.map((post) => ({
-  slug: post.id,
-})) || [];
+  if (!posts) return [];
+
+  return (posts as Pick<BlogPost, 'id'>[]).map((post) => ({
+    slug: post.id,
+  }));
 }
