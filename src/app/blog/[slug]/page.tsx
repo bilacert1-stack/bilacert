@@ -1,12 +1,19 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
-import { blogPosts } from '@/lib/blog-data';
+import { createClient } from '@/lib/supabase/server';
 
-export default async  function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const post = blogPosts.find((p) => p.id === slug);
-  console.log(params, post)
+  const supabase = await createClient();
+  const { data: postData } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('id', slug)
+    .single();
+
+  const post: any = postData;
+
   if (!post) {
     notFound();
   }
@@ -17,7 +24,7 @@ export default async  function BlogPost({ params }: { params: Promise<{ slug: st
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-    
+
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
@@ -58,7 +65,7 @@ export default async  function BlogPost({ params }: { params: Promise<{ slug: st
               </div>
               <div className="flex items-center space-x-2">
                 <Clock className="h-5 w-5" />
-                <span>{post.readTime}</span>
+                <span>{post.read_time}</span>
               </div>
             </div>
           </div>
@@ -123,7 +130,10 @@ export default async  function BlogPost({ params }: { params: Promise<{ slug: st
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  const supabase = await createClient();
+  const { data: posts } = await supabase.from('blog_posts').select('id');
+
+  return posts?.map((post) => ({
     slug: post.id,
-  }));
+  })) || [];
 }

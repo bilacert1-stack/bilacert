@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import Image from 'next/image';
-import { blogPosts } from '@/lib/blog-data';
+import { createClient } from '@/lib/supabase/server';
 
 export const metadata: Metadata = {
 	title: 'Blog',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
 	const categories = [
 		'All',
 		'ICASA Approvals',
@@ -39,6 +39,16 @@ export default function BlogPage() {
 		'Business Strategy',
 		'Marine Compliance',
 	];
+
+	const supabase = await createClient();
+	const { data: blogPosts } = await supabase
+		.from('blog_posts')
+		.select('*')
+		.order('date', { ascending: false });
+
+	if (!blogPosts || blogPosts.length === 0) {
+		return <div className="min-h-screen text-center py-20">No blog posts found.</div>;
+	}
 
 	return (
 		<div className='min-h-screen w-screen'>
@@ -92,7 +102,7 @@ export default function BlogPage() {
 												})}
 											</span>
 										</div>
-										<span>{blogPosts[0].readTime}</span>
+										<span>{blogPosts[0].read_time}</span>
 									</div>
 									<Link
 										href={`/blog/${blogPosts[0].id}`}
@@ -160,7 +170,7 @@ export default function BlogPage() {
 										<span className='bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium'>
 											{post.category}
 										</span>
-										<span className='text-sm text-gray-500'>{post.readTime}</span>
+										<span className='text-sm text-gray-500'>{post.read_time}</span>
 									</div>
 									<h3 className='text-xl font-semibold text-primary mb-3 line-clamp-2'>
 										{post.title}

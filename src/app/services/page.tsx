@@ -13,6 +13,8 @@ import {
 	Clock,
 	Users,
 } from 'lucide-react';
+import { createClient } from '@/lib/supabase/server';
+import React from 'react';
 
 export const metadata: Metadata = {
 	title: 'Our Services',
@@ -40,93 +42,31 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function ServicesPage() {
-	const services = [
-		{
-			title: 'ICASA Type Approvals',
-			description:
-				'Comprehensive support for ICASA type approval applications, including Standard, Simplified, Tested, and Untested approvals.',
-			icon: <Award className='h-8 w-8' />,
-			href: '/services/icasa-type-approvals',
-			features: [
-				'Standard Type Approval',
-				'Simplified Type Approval',
-				'Tested & Untested Approvals',
-				'Testing Coordination',
-			],
-			pricing: 'From R2,000',
-		},
-		{
-			title: 'NRCS LOA Applications',
-			description:
-				'Letter of Authority applications for electrical and electronic products requiring NRCS certification.',
-			icon: <FileText className='h-8 w-8' />,
-			href: '/services/nrcs-loa-applications',
-			features: [
-				'Product Eligibility Assessment',
-				'Technical Documentation',
-				'Testing Coordination',
-				'Renewals & Amendments',
-			],
-			pricing: 'From R6,500',
-		},
-		{
-			title: 'Radio Dealer Licensing',
-			description:
-				'Complete licensing support for businesses selling or distributing radio communication equipment.',
-			icon: <Headphones className='h-8 w-8' />,
-			href: '/services/radio-dealer-licensing',
-			features: [
-				'Eligibility Assessment',
-				'Application Preparation',
-				'ICASA Liaison',
-				'Ongoing Compliance',
-			],
-			pricing: 'From R3,000',
-		},
-		{
-			title: 'Class ECS/ECNS Licensing',
-			description:
-				'Electronic Communications Service and Network Service licensing for telecom providers.',
-			icon: <Shield className='h-8 w-8' />,
-			href: '/services/class-ecs-ecns-licensing',
-			features: [
-				'ECS License Applications',
-				'ECNS License Applications',
-				'Compliance Support',
-				'Renewals & Updates',
-			],
-			pricing: 'From R7,500',
-		},
-		{
-			title: 'License Exemptions',
-			description:
-				'Assessment and application support for businesses that may qualify for ICASA license exemptions.',
-			icon: <Radio className='h-8 w-8' />,
-			href: '/services/license-exemptions',
-			features: [
-				'Eligibility Verification',
-				'Compliance Documentation',
-				'ICASA Confirmation',
-				'Ongoing Monitoring',
-			],
-			pricing: 'From R6,800',
-		},
-		{
-			title: 'Ski Boat VHF Licensing',
-			description:
-				'VHF radio licensing for marine vessels, including ski boats and recreational watercraft.',
-			icon: <Ship className='h-8 w-8' />,
-			href: '/services/ski-boat-vhf-licensing',
-			features: [
-				'Vessel Assessment',
-				'Application Preparation',
-				'Maritime Compliance',
-				'Fleet Licensing',
-			],
-			pricing: 'From R1,800',
-		},
-	];
+export default async function ServicesPage() {
+	const supabase = await createClient();
+	const { data: servicesData } = await supabase
+		.from('services')
+		.select('*')
+		.order('created_at', { ascending: true });
+
+	const iconMap: Record<string, React.ElementType> = {
+		Award,
+		FileText,
+		Headphones,
+		Shield,
+		Radio,
+		Ship,
+	};
+
+	const services = servicesData?.map((service) => ({
+		...service,
+		icon: iconMap[service.icon] ? (
+			// @ts-ignore - Dynamic icon rendering
+			React.createElement(iconMap[service.icon], { className: 'h-8 w-8' })
+		) : (
+			<Award className='h-8 w-8' />
+		),
+	})) || [];
 
 	const process = [
 		{

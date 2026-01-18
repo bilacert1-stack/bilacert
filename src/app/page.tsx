@@ -12,6 +12,7 @@ import {
 	Headphones,
 } from 'lucide-react';
 import StructuredData from '@/components/StructuredData';
+import Testimonials from '@/components/Testimonials';
 
 export const metadata: Metadata = {
 	title: 'Home',
@@ -254,35 +255,8 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Social Proof */}
-			<section className='py-20 bg-primary text-white'>
-				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='text-center mb-16'>
-						<h2 className='text-3xl lg:text-4xl font-bold mb-4'>
-							Trusted by South African Businesses
-						</h2>
-						<p className='text-xl text-gray-200 max-w-3xl mx-auto'>
-							From startups to multinational corporations, we help businesses achieve compliance
-							success
-						</p>
-					</div>
-
-					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-						<div className='text-center'>
-							<div className='text-4xl font-bold text-accent mb-2'>500+</div>
-							<div className='text-gray-200'>Successful Approvals</div>
-						</div>
-						<div className='text-center'>
-							<div className='text-4xl font-bold text-accent mb-2'>30%</div>
-							<div className='text-gray-200'>Faster Processing</div>
-						</div>
-						<div className='text-center'>
-							<div className='text-4xl font-bold text-accent mb-2'>100%</div>
-							<div className='text-gray-200'>Client Satisfaction</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			{/* Testimonials */}
+			<Testimonials />
 
 			{/* Blog Preview */}
 			<section className='py-20 bg-secondary-gray'>
