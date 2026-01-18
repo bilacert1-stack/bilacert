@@ -4,6 +4,19 @@ import { Calendar, User, ArrowLeft, Share2, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { cookies } from 'next/headers'
 
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string | Date; // Database dates often come back as strings
+  read_time: string;
+  category: string;
+  featured: boolean;
+  image: string;
+  created_at: Date;
+}
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const cookieStore = await cookies()
@@ -14,19 +27,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     .eq('id', slug)
     .single();
 
-  const post: {
-      id:string,
-  title:string,
-  excerpt :string,
-  content :string,
-  author :string,
-  date: Date,
-  read_time:string
-  category :string,
-  featured: boolean,
-  image:string,
-  created_at: Date
-  }= postData;
+  const post:BlogPost= postData;
 
   if (!post) {
     notFound();
@@ -147,7 +148,7 @@ export async function generateStaticParams() {
   const supabase = await createClient();
   const { data: posts } = await supabase.from('blog_posts').select('id');
 
-  return posts?.map((post) => ({
+  return posts?.map((posts as Pick<BlogPost, 'id'>[]) => ({
     slug: post.id,
   })) || [];
 }
