@@ -20,12 +20,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   excerpt :string,
   content :string,
   author :string,
-  date: Date(),
+  date: Date,
   read_time:string
   category :string,
   featured: boolean,
   image:string,
-  created_at: NOW()
+  created_at: Date
   }= postData;
 
   if (!post) {
