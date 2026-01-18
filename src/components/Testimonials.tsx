@@ -70,9 +70,10 @@ export default function Testimonials() {
                             data-width="500"
                             data-show-text="true"
                         >
-                            <blockquoteCite cite={t.post_url} className="fb-xfbml-parse-ignore">
+                            {/* CHANGED: blockquoteCite to blockquote */}
+                            <blockquote cite={t.post_url} className="fb-xfbml-parse-ignore">
                                 <a href={t.post_url}>Post</a>
-                            </blockquoteCite>
+                            </blockquote>
                         </div>
                     ))}
                 </div>
