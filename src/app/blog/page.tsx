@@ -56,13 +56,18 @@ export default async function BlogPage() {
 
 	const supabase = await createClient();
 	
-	// 2. Add Type Casting to the Supabase response
+	// FIX: Type Guard to ensure supabase isn't an Error object
+	if (supabase instanceof Error) {
+		console.error("Supabase client error:", supabase.message);
+		return <div className="min-h-screen text-center py-20">Unable to load blog posts at this time.</div>;
+	}
+
+	// Now TypeScript knows supabase is valid and has the .from method
 	const { data: blogPostsData } = await supabase
 		.from('blog_posts')
 		.select('*')
 		.order('date', { ascending: false });
 
-	// Use the interface to type the array
 	const blogPosts = (blogPostsData as BlogPost[]) || [];
 
 	if (blogPosts.length === 0) {
@@ -162,83 +167,4 @@ export default async function BlogPage() {
 						{categories.map((category) => (
 							<button
 								key={category}
-								className='px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-200'>
-								{category}
-							</button>
-						))}
-					</div>
-
-					{/* Posts Grid - 3. Types are now inferred correctly here */}
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-						{blogPosts.slice(1).map((post: BlogPost) => (
-							<Link
-								key={post.id}
-								href={`/blog/${post.id}`}
-								className='bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden'>
-								<div className=' relative h-48 bg-gray-200 flex items-center justify-center overflow-hidden'>
-									<Image
-										src={post.image}
-										alt={post.title}
-										fill
-										style={{ objectFit: 'cover' }}
-										className='rounded-lg'
-									/>
-								</div>
-								<div className='p-6'>
-									<div className='flex items-center justify-between mb-3'>
-										<span className='bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium'>
-											{post.category}
-										</span>
-										<span className='text-sm text-gray-500'>{post.read_time}</span>
-									</div>
-									<h3 className='text-xl font-semibold text-primary mb-3 line-clamp-2'>
-										{post.title}
-									</h3>
-									<p className='text-gray-600 mb-4 line-clamp-3'>{post.excerpt}</p>
-									<div className='flex items-center justify-between text-sm text-gray-500'>
-										<div className='flex items-center space-x-2'>
-											<User className='h-4 w-4' />
-											<span>{post.author}</span>
-										</div>
-										<div className='flex items-center space-x-2'>
-											<Calendar className='h-4 w-4' />
-											<span>
-												{new Date(post.date).toLocaleDateString('en-ZA', {
-													month: 'short',
-													day: 'numeric',
-												})}
-											</span>
-										</div>
-									</div>
-								</div>
-							</Link>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* Newsletter Signup */}
-			<section className='py-20 bg-primary text-white'>
-				<div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-					<h2 className='text-3xl lg:text-4xl font-bold mb-6'>Stay Updated</h2>
-					<p className='text-xl mb-8 text-gray-200'>
-						Subscribe to our newsletter for the latest compliance insights, regulatory updates, and
-						expert guidance delivered to your inbox.
-					</p>
-					<form className='max-w-md mx-auto flex gap-4'>
-						<input
-							type='email'
-							placeholder='Enter your email'
-							className='flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:border-accent'
-						/>
-						<button
-							type='submit'
-							className='bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-light transition-colors duration-200'>
-							Subscribe
-						</button>
-					</form>
-				</div>
-			</section>
-		</div>
-	);
-}
+								className='px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg
