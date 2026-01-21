@@ -16,6 +16,18 @@ import {
 import { createClient } from '@/lib/supabase/server';
 import React from 'react';
 
+// 1. Define the interface for your Service data
+interface Service {
+	id: string;
+	title: string;
+	description: string;
+	icon: string; // The name of the icon as a string from DB
+	features: string[];
+	pricing: string;
+	href: string;
+	created_at: string;
+}
+
 export const metadata: Metadata = {
 	title: 'Our Services',
 	description:
@@ -44,10 +56,20 @@ export const metadata: Metadata = {
 
 export default async function ServicesPage() {
 	const supabase = await createClient();
-	const { data: servicesData } = await supabase
+
+	// FIX: Add Type Guard to ensure supabase is not an Error
+	if (supabase instanceof Error) {
+		console.error("Supabase client error:", supabase.message);
+		return <div className="min-h-screen text-center py-20">Unable to load services. Please try again later.</div>;
+	}
+	
+	// 2. Fetch data and cast it to our Service interface
+	const { data: servicesDataRaw } = await supabase
 		.from('services')
 		.select('*')
 		.order('created_at', { ascending: true });
+
+	const servicesData = (servicesDataRaw as Service[]) || [];
 
 	const iconMap: Record<string, React.ElementType> = {
 		Award,
@@ -58,7 +80,7 @@ export default async function ServicesPage() {
 		Ship,
 	};
 
-	const services = servicesData?.map((service) => ({
+	const services = servicesData.map((service: Service) => ({
 		...service,
 		icon: iconMap[service.icon] ? (
 			// @ts-ignore - Dynamic icon rendering
@@ -66,7 +88,7 @@ export default async function ServicesPage() {
 		) : (
 			<Award className='h-8 w-8' />
 		),
-	})) || [];
+	}));
 
 	const process = [
 		{
@@ -214,7 +236,7 @@ export default async function ServicesPage() {
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<Users className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><Users /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Expert Guidance</h3>
 							<p className='text-gray-600'>
@@ -225,7 +247,7 @@ export default async function ServicesPage() {
 
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<Clock className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><Clock /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Fast & Efficient</h3>
 							<p className='text-gray-600'>
@@ -236,7 +258,7 @@ export default async function ServicesPage() {
 
 						<div className='text-center'>
 							<div className='bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6'>
-								<CheckCircle className='h-8 w-8 text-accent' />
+								<span className='h-8 w-8 text-accent'><CheckCircle /></span>
 							</div>
 							<h3 className='text-xl font-semibold text-primary mb-4'>Guaranteed Success</h3>
 							<p className='text-gray-600'>
