@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
+import { getAllPublishedBlogSlugs } from "@/lib/supabase/blog";
+import { getAllPublishedServiceSlugs } from "@/lib/supabase/services";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://bilacert.co.za";
   const currentDate = new Date();
 
@@ -44,28 +46,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Service pages
-  const servicePages = [
-    "icasa-type-approvals",
-    "nrcs-loa-applications",
-    "radio-dealer-licensing",
-    "class-ecs-ecns-licensing",
-    "license-exemptions",
-    "ski-boat-vhf-licensing",
-  ].map((service) => ({
-    url: `${baseUrl}/services/${service}`,
+  // Dynamic service pages
+  const serviceSlugs = await getAllPublishedServiceSlugs();
+  const servicePages = serviceSlugs.map(({ slug }) => ({
+    url: `${baseUrl}/services/${slug}`,
     lastModified: currentDate,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  // Blog posts
-  const blogPosts = [
-    "icasa-type-approval-requirements",
-    "nrcs-loa-guide",
-    "radio-dealer-licensing-guide",
-  ].map((post) => ({
-    url: `${baseUrl}/blog/${post}`,
+  // Dynamic blog posts
+  const blogSlugs = await getAllPublishedBlogSlugs();
+  const blogPosts = blogSlugs.map(({ slug }) => ({
+    url: `${baseUrl}/blog/${slug}`,
     lastModified: currentDate,
     changeFrequency: "monthly" as const,
     priority: 0.6,

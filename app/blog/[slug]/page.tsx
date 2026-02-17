@@ -19,16 +19,52 @@ import {
   getBlogPostBySlug,
   getBlogPostsByCategory,
 } from "@/lib/supabase/blog";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   const slugs = await getAllPublishedBlogSlugs();
   return slugs.map((item) => ({ slug: item.slug }));
 }
+
 interface Props {
   params: Promise<{
     slug: string;
   }>;
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found - Bilacert",
+    };
+  }
+
+  return {
+    title: post.seo_title || `${post.title} - Bilacert`,
+    description: post.seo_description || post.excerpt,
+    keywords: post.seo_keywords || [
+      post.title.toLowerCase(),
+      ...(post.category?.split(", ").map((c: string) => c.toLowerCase()) || []),
+      "blog",
+      "compliance",
+      "South Africa",
+    ],
+    openGraph: {
+      title: post.seo_title || post.title,
+      description: post.seo_description || post.excerpt,
+      url: `https://bilacert.co.za/blog/${slug}`,
+      type: "article",
+      images: post.featured_image ? [{ url: post.featured_image }] : [],
+    },
+    alternates: {
+      canonical: `https://bilacert.co.za/blog/${slug}`,
+    },
+  };
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
