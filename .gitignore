@@ -41,9 +41,3 @@ yarn-error.log*
 next-env.d.ts
 
 
-
-this is what I want you to copy
-
-
-NEXT_PUBLIC_SUPABASE_URL=https://zpgxnohxizcmuwbosapx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_W_Ugu8XpgXcCoGhUtP3ogQ_NxoDxL9y
