@@ -1,103 +1,84 @@
-import { createBrowserClient } from '@supabase/ssr'
+import { createBrowserClient } from "@supabase/ssr";
+import type { FormSubmissionPayload, Testimonial } from "@/lib/types";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey)
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Supabase URL and anon key are required.");
+}
 
-/**
- * Submit form data to submissions table
- * @param serviceType - One of the 7 service types
- * @param data - Form submission data
- */
+export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
+
 export async function submitForm(
   serviceType: string,
-  data: {
-    name: string
-    email: string
-    phone?: string
-    message: string
-    [key: string]: any
-  }
+  data: FormSubmissionPayload,
 ) {
-  // Separate service-specific fields from base fields
-  const baseFields = ['name', 'email', 'phone', 'message']
-  const serviceData: Record<string, any> = {}
-
-  for (const [key, value] of Object.entries(data)) {
-    if (!baseFields.includes(key)) {
-      serviceData[key] = value
-    }
-  }
+  const { fullName, email, phone, message, ...serviceData } = data;
 
   try {
     const { data: submission, error } = await supabase
-      .from('submissions')
+      .from("submissions")
       .insert({
         service_type: serviceType,
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        message: data.message,
+        name: fullName,
+        email: email,
+        phone: phone || null,
+        message: message,
         service_data: serviceData || {},
-        user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+        user_agent:
+          typeof navigator !== "undefined" ? navigator.userAgent : null,
       })
-      .select()
+      .select();
 
     if (error) {
-      console.error('Form submission error:', error)
-      throw new Error(error.message)
+      console.error("Form submission error:", error);
+      throw new Error(error.message);
     }
 
-    return submission?.[0] || null
+    return submission?.[0] || null;
   } catch (error) {
-    console.error('Supabase form submission failed:', error)
-    throw error
+    console.error("Supabase form submission failed:", error);
+    throw error;
   }
 }
 
-/**
- * Fetch submissions by service type (for public view)
- */
-export async function getSubmissionByEmail(email: string, serviceType?: string) {
+export async function getSubmissionByEmail(
+  email: string,
+  serviceType?: string,
+) {
   try {
-    let query = supabase
-      .from('submissions')
-      .select('*')
-      .eq('email', email)
+    let query = supabase.from("submissions").select("*").eq("email", email);
 
     if (serviceType) {
-      query = query.eq('service_type', serviceType)
+      query = query.eq("service_type", serviceType);
     }
 
-    const { data, error } = await query.order('created_at', {
+    const { data, error } = await query.order("created_at", {
       ascending: false,
-    })
+    });
 
-    if (error) throw error
-    return data
+    if (error) throw error;
+    return data;
   } catch (error) {
-    console.error('Failed to fetch submission:', error)
-    return null
+    console.error("Failed to fetch submission:", error);
+    return null;
   }
 }
 
-/**
- * Get all testimonials (for homepage)
- */
-export async function getTestimonials() {
+export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const { data, error } = await supabase
-      .from('testimonials')
-      .select('*')
-      .eq('verified', true)
-      .order('created_at', { ascending: false })
-      .limit(10)
+      .from("testimonials")
+      .select("*")
+      .eq("verified", true)
+      .order("created_at", { ascending: false })
+      .limit(10);
 
-    if (error) throw error
-    return data || []
+    if (error) throw error;
+    return data || [];
   } catch (error) {
-    console.error('Failed to fetch testimonials:', error)
-    return []
+    console.error("Failed to fetch testimonials:", error);
+    return [];
   }
 }

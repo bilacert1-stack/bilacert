@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { FaWhatsapp } from 'react-icons/fa6';
+import { FaWhatsapp } from "react-icons/fa6";
 
 export default function WhatsAppButton() {
-  const phoneNumber = '27754304433'; // South African format
-  const message = 'Hi! I\'m interested in your compliance services. Can you help me?';
+  const phoneNumber = "27754304433"; // South African format
+  const message =
+    "Hi! I'm interested in your compliance services. Can you help me?";
 
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   };
 
   return (
@@ -18,7 +19,6 @@ export default function WhatsAppButton() {
       aria-label="Chat with us on WhatsApp"
     >
       <FaWhatsapp className="h-6 w-6" />
-     
     </button>
   );
-} 
+}

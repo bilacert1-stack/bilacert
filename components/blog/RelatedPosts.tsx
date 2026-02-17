@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { BlogPost } from '@/types';
+import Link from "next/link";
+import Image from "next/image";
+import { BlogPost } from "@/lib/types";
 
 interface RelatedPostsProps {
   posts: BlogPost[];
@@ -13,10 +13,19 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
         <h2 className="text-3xl font-bold text-primary mb-8">Related Posts</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="block group"
+            >
               <div className="relative h-48 rounded-lg overflow-hidden mb-4">
                 {post.featured_image && (
-                  <Image src={post.featured_image} alt={post.title} layout="fill" className="object-cover" />
+                  <Image
+                    src={post.featured_image}
+                    alt={post.title}
+                    layout="fill"
+                    className="object-cover"
+                  />
                 )}
               </div>
               <h3 className="text-xl font-semibold text-primary group-hover:text-primary-light transition-colors duration-200 mb-2">

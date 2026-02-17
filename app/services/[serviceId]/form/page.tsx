@@ -1,5 +1,5 @@
-import ServiceApplicationForm from './ServiceApplicationForm';
+import ServiceApplicationForm from "./ServiceApplicationForm";
 
 export default function ServiceFormPage() {
-	return <ServiceApplicationForm />;
+  return <ServiceApplicationForm />;
 }

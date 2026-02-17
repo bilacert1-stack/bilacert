@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Shield,
@@ -26,7 +26,7 @@ import {
   Award,
   Headphones,
   Ship,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const iconMap: { [key: string]: LucideIcon } = {
   Shield,

@@ -3,18 +3,18 @@
 /* Bilacert Design System - CSS Variables */
 :root {
   /* Colors */
-  --primary-blue: #0A2B4C;
-  --primary-blue-light: #1A4A6B;
+  --primary-blue: #0a2b4c;
+  --primary-blue-light: #1a4a6b;
   --primary-blue-dark: #051829;
-  --secondary-white: #FFFFFF;
-  --secondary-gray: #F8F9FA;
-  --accent-orange: #F2994A;
-  --accent-orange-light: #F4B366;
-  --accent-orange-dark: #E67E2D;
-  --text-dark: #1A1A1A;
-  --text-gray: #6B7280;
-  --text-light: #9CA3AF;
-  
+  --secondary-white: #ffffff;
+  --secondary-gray: #f8f9fa;
+  --accent-orange: #f2994a;
+  --accent-orange-light: #f4b366;
+  --accent-orange-dark: #e67e2d;
+  --text-dark: #1a1a1a;
+  --text-gray: #6b7280;
+  --text-light: #9ca3af;
+
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -22,10 +22,10 @@
   --space-lg: 2rem;
   --space-xl: 3rem;
   --space-2xl: 4rem;
-  
+
   /* Typography */
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'Fira Code', monospace;
+  --font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Fira Code", monospace;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -34,13 +34,13 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  
+
   /* Transitions */
   --transition-default: 0.3s ease;
   --transition-fast: 0.15s ease;
@@ -136,7 +136,7 @@ html {
 }
 
 .btn-secondary:hover {
-  background-color: #E5E7EB;
+  background-color: #e5e7eb;
   transform: translateY(-1px);
 }
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Service } from '@/types';
-import { createBrowserClient } from '@supabase/ssr';
+import { createBrowserClient } from "@supabase/ssr";
+import { useEffect, useState } from "react";
+import type { Service } from "@/lib/types";
 
 export function useServices() {
   const [services, setServices] = useState<Service[]>([]);
@@ -11,27 +11,32 @@ export function useServices() {
     const fetchServices = async () => {
       try {
         setIsLoading(true);
-        const supabase = createBrowserClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+          throw new Error("Missing Supabase environment variables");
+        }
+        const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
 
         const { data, error: supabaseError } = await supabase
-          .from('services')
-          .select('*')
-          .order('created_at', { ascending: false });
+          .from("services")
+          .select("*")
+          .order("created_at", { ascending: false });
 
         if (supabaseError) throw supabaseError;
 
         setServices(
-          data.map((item: any) => ({
+          data.map((item) => ({
             ...item,
             shortDescription: item.short_description,
             processingTime: item.processing_time,
-          }))
+          })),
         );
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch services');
+        setError(
+          err instanceof Error ? err.message : "Failed to fetch services",
+        );
       } finally {
         setIsLoading(false);
       }
@@ -52,15 +57,18 @@ export function useServiceByHref(href: string) {
     const fetchService = async () => {
       try {
         setIsLoading(true);
-        const supabase = createBrowserClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+          throw new Error("Missing Supabase environment variables");
+        }
+        const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
 
         const { data, error: supabaseError } = await supabase
-          .from('services')
-          .select('*')
-          .eq('href', href)
+          .from("services")
+          .select("*")
+          .eq("href", href)
           .single();
 
         if (supabaseError) throw supabaseError;
@@ -71,7 +79,9 @@ export function useServiceByHref(href: string) {
           processingTime: data.processing_time,
         });
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch service');
+        setError(
+          err instanceof Error ? err.message : "Failed to fetch service",
+        );
       } finally {
         setIsLoading(false);
       }

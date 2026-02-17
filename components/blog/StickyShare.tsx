@@ -1,4 +1,4 @@
-import { Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Twitter, Linkedin, Facebook } from "lucide-react";
 
 export function StickyShare() {
   return (

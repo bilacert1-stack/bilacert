@@ -3,16 +3,16 @@
 
 :root {
   /* Bilacert Color Palette */
-  --primary-blue: #0A2B4C;
-  --primary-blue-light: #1A4A6B;
-  --secondary-white: #FFFFFF;
-  --secondary-gray: #F8F9FA;
-  --accent-orange: #F2994A;
-  --accent-orange-light: #F4B366;
-  --text-dark: #1A1A1A;
-  --text-gray: #6B7280;
-  --text-light: #9CA3AF;
-  
+  --primary-blue: #0a2b4c;
+  --primary-blue-light: #1a4a6b;
+  --secondary-white: #ffffff;
+  --secondary-gray: #f8f9fa;
+  --accent-orange: #f2994a;
+  --accent-orange-light: #f4b366;
+  --text-dark: #1a1a1a;
+  --text-gray: #6b7280;
+  --text-light: #9ca3af;
+
   /* Background and foreground */
   --background: var(--secondary-white);
   --foreground: var(--text-dark);
@@ -21,9 +21,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Fira Code', monospace;
-  
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", monospace;
+
   /* Custom Bilacert colors */
   --color-primary: var(--primary-blue);
   --color-primary-light: var(--primary-blue-light);
@@ -39,7 +39,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

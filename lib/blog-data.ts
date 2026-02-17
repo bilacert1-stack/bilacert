@@ -1,10 +1,10 @@
 export const blogPosts = [
-	{
-		id: 'icasa-type-approval-requirements',
-		title: 'Understanding ICASA Type Approval Requirements',
-		excerpt:
-			'A comprehensive guide to ICASA type approval requirements for South African businesses. Learn about the different types of approvals and how to navigate the process.',
-		content: `
+  {
+    id: "icasa-type-approval-requirements",
+    title: "Understanding ICASA Type Approval Requirements",
+    excerpt:
+      "A comprehensive guide to ICASA type approval requirements for South African businesses. Learn about the different types of approvals and how to navigate the process.",
+    content: `
       <p>ICASA (Independent Communications Authority of South Africa) type approval is a mandatory certification process for all electronic communication equipment before it can be sold or used in South Africa. This comprehensive guide will help you understand the requirements and navigate the process successfully.</p>
       
       <h2>What is ICASA Type Approval?</h2>
@@ -26,19 +26,19 @@ export const blogPosts = [
       <h2>Why Choose Bilacert?</h2>
       <p>With our expertise and streamlined processes, we typically reduce approval times by 30% compared to industry average, while maintaining a 100% success rate on first-time applications.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2024-01-15',
-		readTime: '5 min read',
-		category: 'ICASA Approvals',
-		featured: true,
-		image: '/ICASA.png',
-	},
-	{
-		id: 'nrcs-loa-guide',
-		title: 'NRCS LOA: What You Need to Know',
-		excerpt:
-			'Everything you need to know about NRCS Letter of Authority applications. From eligibility to the application process, we cover it all.',
-		content: `
+    author: "Bilacert Team",
+    date: "2024-01-15",
+    readTime: "5 min read",
+    category: "ICASA Approvals",
+    featured: true,
+    image: "/ICASA.png",
+  },
+  {
+    id: "nrcs-loa-guide",
+    title: "NRCS LOA: What You Need to Know",
+    excerpt:
+      "Everything you need to know about NRCS Letter of Authority applications. From eligibility to the application process, we cover it all.",
+    content: `
       <p>The National Regulator for Compulsory Specifications (NRCS) Letter of Authority (LOA) is a critical certification for electrical and electronic products entering the South African market.</p>
       
       <h2>What is an NRCS LOA?</h2>
@@ -50,19 +50,19 @@ export const blogPosts = [
       <h2>The Application Process</h2>
       <p>Our team manages the entire LOA application process, including product assessment, documentation preparation, testing coordination, and submission to NRCS.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2024-01-10',
-		readTime: '7 min read',
-		category: 'NRCS Compliance',
-		featured: false,
-		image: '/NRCS.jpg',
-	},
-	{
-		id: 'radio-dealer-licensing-guide',
-		title: 'Radio Dealer Licensing Made Simple',
-		excerpt:
-			'Step-by-step guide to obtaining your Radio Dealer License from ICASA. Avoid common pitfalls and ensure a smooth application process.',
-		content: `
+    author: "Bilacert Team",
+    date: "2024-01-10",
+    readTime: "7 min read",
+    category: "NRCS Compliance",
+    featured: false,
+    image: "/NRCS.jpg",
+  },
+  {
+    id: "radio-dealer-licensing-guide",
+    title: "Radio Dealer Licensing Made Simple",
+    excerpt:
+      "Step-by-step guide to obtaining your Radio Dealer License from ICASA. Avoid common pitfalls and ensure a smooth application process.",
+    content: `
       <p>Operating as a radio dealer in South Africa requires proper licensing from ICASA. This guide walks you through the complete process of obtaining your Radio Dealer License.</p>
       
       <h2>Who Needs a Radio Dealer License?</h2>
@@ -77,19 +77,19 @@ export const blogPosts = [
       <h2>Maintaining Compliance</h2>
       <p>License holders must renew annually and maintain accurate records of all radio apparatus transactions as required by ICASA regulations.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2024-01-05',
-		readTime: '6 min read',
-		category: 'Licensing',
-		featured: false,
-		image: '/radio-dealer-licensing-guide.jpg',
-	},
-	{
-		id: 'ecs-ecns-licensing-explained',
-		title: 'ECS/ECNS Licensing Explained',
-		excerpt:
-			'Understanding the difference between Electronic Communications Service and Network Service licenses. Which one does your business need?',
-		content: `
+    author: "Bilacert Team",
+    date: "2024-01-05",
+    readTime: "6 min read",
+    category: "Licensing",
+    featured: false,
+    image: "/radio-dealer-licensing-guide.jpg",
+  },
+  {
+    id: "ecs-ecns-licensing-explained",
+    title: "ECS/ECNS Licensing Explained",
+    excerpt:
+      "Understanding the difference between Electronic Communications Service and Network Service licenses. Which one does your business need?",
+    content: `
       <p>Understanding the difference between Electronic Communications Service (ECS) and Electronic Communications Network Service (ECNS) licenses is crucial for telecommunications providers in South Africa.</p>
       
       <h2>ECS License Overview</h2>
@@ -104,19 +104,19 @@ export const blogPosts = [
       <h2>Application Considerations</h2>
       <p>The application process involves detailed technical plans, financial viability assessments, and compliance with South Africa's electronic communications regulations.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2024-01-01',
-		readTime: '8 min read',
-		category: 'Telecom Licensing',
-		featured: false,
-		image: '/ecs-ecns-licensing-explained.jpg',
-	},
-	{
-		id: 'compliance-cost-savings',
-		title: 'How Proper Compliance Saves Your Business Money',
-		excerpt:
-			'Learn how investing in proper compliance upfront can save your business thousands in penalties and avoid costly delays.',
-		content: `
+    author: "Bilacert Team",
+    date: "2024-01-01",
+    readTime: "8 min read",
+    category: "Telecom Licensing",
+    featured: false,
+    image: "/ecs-ecns-licensing-explained.jpg",
+  },
+  {
+    id: "compliance-cost-savings",
+    title: "How Proper Compliance Saves Your Business Money",
+    excerpt:
+      "Learn how investing in proper compliance upfront can save your business thousands in penalties and avoid costly delays.",
+    content: `
       <p>Investing in proper compliance measures isn't just about avoiding penalties - it's a strategic business decision that can lead to significant cost savings.</p>
       
       <h2>Avoiding Penalties and Fines</h2>
@@ -131,19 +131,19 @@ export const blogPosts = [
       <h2>Long-term Business Sustainability</h2>
       <p>Compliant businesses build stronger reputations, avoid legal costs, and maintain uninterrupted operations, leading to better ROI and business continuity.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2023-12-28',
-		readTime: '4 min read',
-		category: 'Business Strategy',
-		featured: false,
-		image: '/compliance-cost-savings.jpg',
-	},
-	{
-		id: 'vhf-licensing-marine',
-		title: 'VHF Licensing for Marine Operations',
-		excerpt:
-			'Complete guide to VHF radio licensing for marine vessels. From recreational boats to commercial fleets, ensure your vessels are compliant.',
-		content: `
+    author: "Bilacert Team",
+    date: "2023-12-28",
+    readTime: "4 min read",
+    category: "Business Strategy",
+    featured: false,
+    image: "/compliance-cost-savings.jpg",
+  },
+  {
+    id: "vhf-licensing-marine",
+    title: "VHF Licensing for Marine Operations",
+    excerpt:
+      "Complete guide to VHF radio licensing for marine vessels. From recreational boats to commercial fleets, ensure your vessels are compliant.",
+    content: `
       <p>VHF radio communication is essential for marine safety and operations. This guide covers the licensing requirements for marine VHF equipment in South African waters.</p>
       
       <h2>Why VHF Licensing is Mandatory</h2>
@@ -158,11 +158,11 @@ export const blogPosts = [
       <h2>Safety Considerations</h2>
       <p>Properly licensed VHF equipment ensures access to emergency channels, weather updates, and communication with port authorities and other vessels.</p>
     `,
-		author: 'Bilacert Team',
-		date: '2023-12-25',
-		readTime: '5 min read',
-		category: 'Marine Compliance',
-		featured: false,
-		image: '/herosetion/Ski-Boat-VHF.jpg',
-	},
+    author: "Bilacert Team",
+    date: "2023-12-25",
+    readTime: "5 min read",
+    category: "Marine Compliance",
+    featured: false,
+    image: "/herosetion/Ski-Boat-VHF.jpg",
+  },
 ];
