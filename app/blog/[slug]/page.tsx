@@ -145,9 +145,28 @@ export default async function BlogPostPage({ params }: Props) {
             <TableOfContents content={post.content || ""} />
           </div>
           <div className="w-3/4">
-            <div className="bg-white rounded-xl shadow-sm p-8 lg:p-12">
-              <div className="prose prose-lg max-w-none">{post.content}</div>
-            </div>
+            
+            <div className="mt-6 border-t pt-6 max-w-[256] sm:max-w-lg  md:max-w-xl lg:max-w-3xl mx-auto">
+                
+                <article
+                  className="prose prose-slate prose-indigo text-sm
+                                       break-words overflow-wrap-anywhere
+                                       prose-headings:font-bold prose-headings:tracking-tight
+                                       prose-a:text-indigo-600 prose-img:rounded-2xl prose-img:shadow-lg
+                                       [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-xl 
+          [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mb-4 
+          [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-3 
+          [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 
+          [&>p]:mb-4 [&>p]:leading-relaxed [&>p]:text-slate-700
+          [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:my-4
+          [&>img]:rounded-lg"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                    post.content ||
+                      '<p class="text-slate-400 italic">No content to display yet...</p>',
+                  }}
+                />
+              </div>
 
             <div className="bg-white rounded-xl shadow-sm p-8 lg:p-12 mt-8">
               <div className="flex items-center space-x-4">
