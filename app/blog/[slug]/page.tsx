@@ -18,7 +18,7 @@ import {
   getAllPublishedBlogSlugs,
   getBlogPostBySlug,
   getBlogPostsByCategory,
-  incrementBlogPostViews,
+
 } from "@/lib/supabase/blog";
 import type { Metadata } from "next";
 import { ViewTracker } from "@/components/blog/view";
@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <ViewTracker slug={slug} incrementFn={incrementBlogPostViews} />
+      <ViewTracker slug={slug} />
       <StickyShare />
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
