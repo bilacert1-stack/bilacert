@@ -73,3 +73,13 @@ export async function getAuthorByName(name: string) {
 
   return data;
 }
+export async function incrementBlogPostViews(slug: string): Promise<void> {
+  const { error } = await supabase
+    .rpc("increment_views", { post_slug: slug });
+
+  if (error) {
+    console.error("Failed to increment views:", error.message);
+    // We log it but usually don't want to throw an error and crash 
+    // the whole blog page just because a view failed to count.
+  }
+}

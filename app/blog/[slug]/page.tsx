@@ -18,6 +18,7 @@ import {
   getAllPublishedBlogSlugs,
   getBlogPostBySlug,
   getBlogPostsByCategory,
+  incrementBlogPostViews,
 } from "@/lib/supabase/blog";
 import type { Metadata } from "next";
 
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
-
+  await incrementBlogPostViews(slug);
   if (!post) {
     notFound();
   }
@@ -145,11 +146,11 @@ export default async function BlogPostPage({ params }: Props) {
             <TableOfContents content={post.content || ""} />
           </div>
           <div className="w-3/4">
-            
+
             <div className="mt-6 border-t pt-6 max-w-[256] sm:max-w-lg  md:max-w-xl lg:max-w-3xl mx-auto">
-                
-                <article
-                  className="prose prose-slate prose-indigo text-sm
+
+              <article
+                className="prose prose-slate prose-indigo text-sm
                                        break-words overflow-wrap-anywhere
                                        prose-headings:font-bold prose-headings:tracking-tight
                                        prose-a:text-indigo-600 prose-img:rounded-2xl prose-img:shadow-lg
@@ -160,13 +161,13 @@ export default async function BlogPostPage({ params }: Props) {
           [&>p]:mb-4 [&>p]:leading-relaxed [&>p]:text-slate-700
           [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:my-4
           [&>img]:rounded-lg"
-                  dangerouslySetInnerHTML={{
-                    __html:
+                dangerouslySetInnerHTML={{
+                  __html:
                     post.content ||
-                      '<p class="text-slate-400 italic">No content to display yet...</p>',
-                  }}
-                />
-              </div>
+                    '<p class="text-slate-400 italic">No content to display yet...</p>',
+                }}
+              />
+            </div>
 
             <div className="bg-white rounded-xl shadow-sm p-8 lg:p-12 mt-8">
               <div className="flex items-center space-x-4">
@@ -187,39 +188,46 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 bg-secondary-gray">
+      <section className="py-8 md:py-12 bg-secondary-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-            <h3 className="text-2xl font-bold text-primary mb-4">
+          {/* Reduced padding on mobile (p-5) and increased it on larger screens (md:p-8) */}
+          <div className="bg-white rounded-xl shadow-sm p-5 md:p-8 text-center">
+            <h3 className="text-xl md:text-2xl font-bold text-primary mb-4">
               Found this helpful?
             </h3>
-            <div className="flex justify-center space-x-4 mb-8">
+
+            {/* Changed to a vertical grid on mobile (grid grid-cols-1 gap-3) 
+        and switched back to a flex row on medium screens (md:flex md:space-x-4)
+      */}
+            <div className="grid grid-cols-1 gap-3 md:flex md:justify-center md:space-x-4 md:gap-0 mb-8">
               <button
                 type="button"
-                className="flex items-center space-x-2 bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500"
+                className="flex items-center justify-center space-x-2 bg-blue-400 text-white px-4 py-2.5 rounded-lg hover:bg-blue-500 w-full md:w-auto"
               >
                 <Twitter className="h-5 w-5" />
                 <span>Twitter</span>
               </button>
               <button
                 type="button"
-                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2.5 rounded-lg hover:bg-blue-700 w-full md:w-auto"
               >
                 <Linkedin className="h-5 w-5" />
                 <span>LinkedIn</span>
               </button>
               <button
                 type="button"
-                className="flex items-center space-x-2 bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900"
+                className="flex items-center justify-center space-x-2 bg-blue-800 text-white px-4 py-2.5 rounded-lg hover:bg-blue-900 w-full md:w-auto"
               >
                 <Facebook className="h-5 w-5" />
                 <span>Facebook</span>
               </button>
             </div>
+
             <div className="border-t pt-8">
+              {/* Added w-full on mobile and md:w-auto to make the CTA thumb-friendly */}
               <Link
                 href="/contact"
-                className="bg-primary text-white px-6 py-3 rounded-lg font-semibold inline-block"
+                className="bg-primary text-white px-6 py-3 rounded-lg font-semibold inline-block w-full md:w-auto text-center"
               >
                 Get Free Consultation
               </Link>
