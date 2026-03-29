@@ -21,6 +21,7 @@ import {
   incrementBlogPostViews,
 } from "@/lib/supabase/blog";
 import type { Metadata } from "next";
+import { ViewTracker } from "@/components/blog/view";
 
 export async function generateStaticParams() {
   const slugs = await getAllPublishedBlogSlugs();
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
-  await incrementBlogPostViews(slug);
+
   if (!post) {
     notFound();
   }
@@ -80,6 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
+      <ViewTracker slug={slug} incrementFn={incrementBlogPostViews} />
       <StickyShare />
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
