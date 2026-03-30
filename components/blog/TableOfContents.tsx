@@ -15,7 +15,9 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Heading[]>([]);
 
   useEffect(() => {
-    const headingElements = document.querySelectorAll("h2, h3, h4");
+    // Note: HTML only goes up to h6! I left h7 in case you have custom styling,
+    // but standard HTML stops at <h6>.
+    const headingElements = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
     const newHeadings: Heading[] = [];
 
     headingElements.forEach((heading) => {
@@ -35,7 +37,8 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   }, [content]);
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg">
+    /* Added 'hidden md:block' here */
+    <div className="hidden md:block bg-gray-100 p-6 rounded-lg">
       <h3 className="text-xl font-bold mb-4">Table of Contents</h3>
       <ul>
         {headings.map((heading) => (

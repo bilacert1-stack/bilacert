@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getIcon } from "@/lib/services-config";
+import { CheckCircle, Shield } from "lucide-react";
 
 interface ServiceHeroProps {
   title: string;
   subtitle: string;
   iconName: string;
   imageSrc: string;
-  stats: Array<{ title: string; description: string }>;
+  processing_time: string;
   formPath: string;
   phone: string;
 }
@@ -17,7 +18,7 @@ export function ServiceHero({
   subtitle,
   iconName,
   imageSrc,
-  stats,
+  processing_time,
   formPath,
   phone,
 }: ServiceHeroProps) {
@@ -57,7 +58,7 @@ export function ServiceHero({
               </Link>
             </div>
           </div>
-          <HeroStatsBackdrop stats={stats} />
+          <HeroStatsBackdrop processing_time={processing_time} />
         </div>
       </div>
     </section>
@@ -65,26 +66,33 @@ export function ServiceHero({
 }
 
 interface HeroStatsBackdropProps {
-  stats: Array<{ title: string; description: string }>;
+  processing_time: string;
 }
 
-export function HeroStatsBackdrop({ stats }: HeroStatsBackdropProps) {
+export function HeroStatsBackdrop({ processing_time }: HeroStatsBackdropProps) {
   const CheckCircleIcon = getIcon("CheckCircle");
 
   return (
     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
       <div className="space-y-6">
-        {stats.map((stat, index) => (
-          <div key={index} className="flex items-center space-x-4">
-            <div className="bg-accent p-3 rounded-lg">
-              <CheckCircleIcon className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h3 className="font-semibold">{stat.title}</h3>
-              <p className="text-gray-300">{stat.description}</p>
-            </div>
+        <div className="flex items-center space-x-4">
+          <div className="bg-accent p-3 rounded-lg">
+            <CheckCircle className="h-6 w-6 text-white" />
           </div>
-        ))}
+          <div>
+            <h3 className="font-semibold">{processing_time}</h3>
+            <p className="text-gray-300">Standard processing time</p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4">
+          <div className="bg-accent p-3 rounded-lg">
+            <Shield className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h3 className="font-semibold">100% Success Rate</h3>
+            <p className="text-gray-300">On first-time applications</p>
+          </div>
+        </div>
       </div>
     </div>
   );
