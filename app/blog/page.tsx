@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 0;
+
 export default async function BlogPage() {
   const categories = [
     "All",

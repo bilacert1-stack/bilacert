@@ -1,7 +1,8 @@
 import type { BlogPost } from "@/lib/types";
-import { supabase } from "./client";
+import { createClient as createServerClient } from "./server";
 
 export async function getAllPublishedBlogSlugs() {
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("slug")
@@ -15,10 +16,12 @@ export async function getAllPublishedBlogSlugs() {
 }
 
 export async function getAllPublishedBlogPosts(): Promise<BlogPost[]> {
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*")
-    .eq("published", true);
+    .eq("published", true)
+    .order("created_at", { ascending: false });
 
   if (error) {
     throw new Error(error.message);
@@ -30,6 +33,7 @@ export async function getAllPublishedBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostBySlug(
   slug: string,
 ): Promise<BlogPost | null> {
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*")
@@ -47,6 +51,7 @@ export async function getBlogPostsByCategory(
   category: string,
   limit: number = 3,
 ): Promise<BlogPost[]> {
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*")
@@ -61,6 +66,7 @@ export async function getBlogPostsByCategory(
 }
 
 export async function getAuthorByName(name: string) {
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("authors")
     .select("*")
@@ -73,13 +79,13 @@ export async function getAuthorByName(name: string) {
 
   return data;
 }
+
 export async function incrementBlogPostViews(slug: string): Promise<void> {
+  const supabase = await createServerClient();
   const { error } = await supabase
     .rpc("increment_views", { post_slug: slug });
 
   if (error) {
     console.error("Failed to increment views:", error.message);
-    // We log it but usually don't want to throw an error and crash 
-    // the whole blog page just because a view failed to count.
   }
 }

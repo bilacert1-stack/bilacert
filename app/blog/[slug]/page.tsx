@@ -23,6 +23,8 @@ import {
 import type { Metadata } from "next";
 import { ViewTracker } from "@/components/blog/view";
 
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const slugs = await getAllPublishedBlogSlugs();
   return slugs.map((item) => ({ slug: item.slug }));
