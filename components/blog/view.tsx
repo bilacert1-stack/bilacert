@@ -1,6 +1,6 @@
 "use client";
 
-import { incrementBlogPostViews } from "@/lib/supabase/blog";
+import { incrementBlogPostViews } from "@/lib/supabase/blog-client";
 import { useEffect } from "react";
 
 interface ViewTrackerProps {

@@ -1,3 +1,4 @@
+import "server-only";
 import type { BlogPost } from "@/lib/types";
 import { createClient as createServerClient } from "./server";
 
@@ -78,14 +79,4 @@ export async function getAuthorByName(name: string) {
   }
 
   return data;
-}
-
-export async function incrementBlogPostViews(slug: string): Promise<void> {
-  const supabase = await createServerClient();
-  const { error } = await supabase
-    .rpc("increment_views", { post_slug: slug });
-
-  if (error) {
-    console.error("Failed to increment views:", error.message);
-  }
 }
