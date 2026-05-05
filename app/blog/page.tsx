@@ -44,17 +44,18 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
         <span className="sr-only">View Details</span>
       </Link>
 
-      <div className="relative h-56 w-full overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={post.featured_image || `https://picsum.photos/seed/${post.id}/600/400`}
           alt={post.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         <div className="absolute bottom-4 left-4">
           {post.category && (
-            <Badge className="bg-accent hover:bg-accent-light text-white border-none">
+            <Badge className="bg-accent hover:bg-accent-light text-white border-none shadow-sm">
               {post.category}
             </Badge>
           )}
@@ -62,9 +63,16 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
       </div>
 
       <div className="flex flex-col flex-grow p-6">
-        <div className="flex items-center gap-3 mb-3 text-xs text-gray-500">
-          <div className="flex items-center gap-1">
-            <Calendar className="h-3.5 w-3.5" />
+        <h3 className="mb-2 text-xl font-bold text-primary group-hover:text-accent transition-colors duration-200 line-clamp-2">
+          {post.title}
+        </h3>
+        <p className="mb-4 text-sm text-gray-600 line-clamp-3 flex-grow leading-relaxed">
+          {post.excerpt}
+        </p>
+        
+        <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between text-xs text-gray-500">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-3.5 w-3.5 text-accent" />
             <span>
               {new Date(post.created_at).toLocaleDateString("en-ZA", {
                 month: "short",
@@ -73,32 +81,10 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
               })}
             </span>
           </div>
-          {post.read_time && (
-            <div className="flex items-center gap-1">
-              <Clock className="h-3.5 w-3.5" />
-              <span>{post.read_time}</span>
-            </div>
-          )}
-        </div>
-        
-        <h3 className="mb-3 text-xl font-bold text-primary group-hover:text-accent transition-colors duration-200 line-clamp-2">
-          {post.title}
-        </h3>
-        
-        <p className="mb-4 text-sm text-gray-600 line-clamp-3 flex-grow">
-          {post.excerpt}
-        </p>
-        
-        <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm text-gray-700 font-medium">
-            <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <User className="h-4 w-4" />
-            </div>
-            <span>{post.author_name || "Bilacert Team"}</span>
+          <div className="flex items-center gap-1 text-accent font-bold group-hover:gap-1.5 transition-all duration-300">
+            <span>Read More</span>
+            <ArrowRight className="h-3.5 w-3.5" />
           </div>
-          <span className="text-accent font-semibold text-sm flex items-center group-hover:gap-1.5 transition-all">
-            Read More <ArrowRight className="h-4 w-4 ml-1" />
-          </span>
         </div>
       </div>
     </div>
@@ -121,7 +107,7 @@ export default async function BlogPage() {
   if (blogPosts.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center py-20 bg-secondary-gray">
-        <div className="text-center">
+        <div className="text-center px-4">
           <h2 className="text-2xl font-bold text-primary mb-2">No blog posts found</h2>
           <p className="text-gray-600">Check back later for more updates.</p>
         </div>
@@ -135,7 +121,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative text-white py-24 lg:py-32 overflow-hidden">
+      <section className="relative text-white py-20 md:py-24 lg:py-32 overflow-hidden">
         <Image
           src="/herosetion/Blog.jpg"
           alt="Compliance Insights & Updates"
@@ -143,18 +129,18 @@ export default async function BlogPage() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-primary/70 backdrop-blur-[1px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Badge className="bg-accent text-white mb-6 px-4 py-1.5 text-sm uppercase tracking-wider font-bold border-none">
+            <Badge className="bg-accent text-white mb-6 px-4 py-1.5 text-xs uppercase tracking-wider font-bold border-none">
               Insights Hub
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
               Compliance Insights <br className="hidden md:block" /> & Updates
             </h1>
             <p className="text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
               Stay informed with the latest compliance news, regulatory updates,
-              and expert insights to keep your business ahead of the curve in the South African market.
+              and expert insights to keep your business ahead of the curve.
             </p>
           </div>
         </div>
@@ -164,15 +150,17 @@ export default async function BlogPage() {
       {featuredPost && (
         <section className="py-12 md:py-20 bg-secondary-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 group">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="relative h-72 md:h-96 lg:h-full min-h-[300px]">
+                <div className="relative h-64 sm:h-80 md:h-96 lg:h-full min-h-[300px] overflow-hidden">
                   <Image
                     src={featuredPost.featured_image || `https://picsum.photos/seed/${featuredPost.id}/600/400`}
                     alt={featuredPost.title}
                     fill
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:hidden" />
                   <div className="absolute top-6 left-6">
                     <Badge className="bg-accent text-white px-4 py-1.5 border-none shadow-lg">
                       Featured Article
@@ -189,18 +177,24 @@ export default async function BlogPage() {
                         day: "numeric",
                       })}
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="h-4 w-4 text-accent" />
-                      {featuredPost.read_time}
-                    </span>
+                    {featuredPost.read_time && (
+                      <>
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                        <span className="flex items-center gap-1.5">
+                          <Clock className="h-4 w-4 text-accent" />
+                          {featuredPost.read_time}
+                        </span>
+                      </>
+                    )}
                   </div>
                   
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-6 leading-tight">
-                    {featuredPost.title}
-                  </h2>
+                  <Link href={`/blog/${featuredPost.slug}`} className="block group">
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-primary mb-6 leading-tight group-hover:text-accent transition-colors duration-200">
+                      {featuredPost.title}
+                    </h2>
+                  </Link>
                   
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-600 mb-8 leading-relaxed line-clamp-4">
                     {featuredPost.excerpt}
                   </p>
                   
@@ -233,7 +227,7 @@ export default async function BlogPage() {
       )}
 
       {/* Blog Posts Grid */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div className="max-w-2xl">
@@ -247,11 +241,11 @@ export default async function BlogPage() {
             </div>
             
             <div className="flex flex-wrap gap-2">
-              {categories.slice(0, 4).map((category) => (
+              {categories.slice(0, 5).map((category) => (
                 <button
                   key={category}
                   type="button"
-                  className="px-5 py-2 rounded-full text-sm font-medium border border-gray-200 text-gray-600 hover:border-accent hover:text-accent transition-all"
+                  className="px-4 py-2 rounded-full text-xs md:text-sm font-medium border border-gray-200 text-gray-600 hover:border-accent hover:text-accent transition-all whitespace-nowrap"
                 >
                   {category}
                 </button>
@@ -261,13 +255,13 @@ export default async function BlogPage() {
 
           {/* Posts Grid */}
           {regularPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
               {regularPosts.map((post: BlogPost) => (
                 <BlogCard key={post.id} post={post} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+            <div className="text-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
               <p className="text-gray-500">More articles coming soon.</p>
             </div>
           )}
