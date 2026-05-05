@@ -1,9 +1,10 @@
-import { ArrowRight, Calendar, User } from "lucide-react";
+import { ArrowRight, Calendar, User, Clock } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllPublishedBlogPosts } from "@/lib/supabase/blog";
 import type { BlogPost } from "@/lib/types";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -32,6 +33,78 @@ export const metadata: Metadata = {
 
 export const revalidate = 0;
 
+const BlogCard = ({ post }: { post: BlogPost }) => {
+  return (
+    <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border border-gray-100">
+      <Link
+        href={`/blog/${post.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`View ${post.title}`}
+      >
+        <span className="sr-only">View Details</span>
+      </Link>
+
+      <div className="relative h-56 w-full overflow-hidden">
+        <Image
+          src={post.featured_image || `https://picsum.photos/seed/${post.id}/600/400`}
+          alt={post.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-4 left-4">
+          {post.category && (
+            <Badge className="bg-accent hover:bg-accent-light text-white border-none">
+              {post.category}
+            </Badge>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col flex-grow p-6">
+        <div className="flex items-center gap-3 mb-3 text-xs text-gray-500">
+          <div className="flex items-center gap-1">
+            <Calendar className="h-3.5 w-3.5" />
+            <span>
+              {new Date(post.created_at).toLocaleDateString("en-ZA", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+          {post.read_time && (
+            <div className="flex items-center gap-1">
+              <Clock className="h-3.5 w-3.5" />
+              <span>{post.read_time}</span>
+            </div>
+          )}
+        </div>
+        
+        <h3 className="mb-3 text-xl font-bold text-primary group-hover:text-accent transition-colors duration-200 line-clamp-2">
+          {post.title}
+        </h3>
+        
+        <p className="mb-4 text-sm text-gray-600 line-clamp-3 flex-grow">
+          {post.excerpt}
+        </p>
+        
+        <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-gray-700 font-medium">
+            <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <User className="h-4 w-4" />
+            </div>
+            <span>{post.author_name || "Bilacert Team"}</span>
+          </div>
+          <span className="text-accent font-semibold text-sm flex items-center group-hover:gap-1.5 transition-all">
+            Read More <ArrowRight className="h-4 w-4 ml-1" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default async function BlogPage() {
   const categories = [
     "All",
@@ -47,14 +120,22 @@ export default async function BlogPage() {
 
   if (blogPosts.length === 0) {
     return (
-      <div className="min-h-screen text-center py-20">No blog posts found.</div>
+      <div className="min-h-screen flex items-center justify-center py-20 bg-secondary-gray">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-primary mb-2">No blog posts found</h2>
+          <p className="text-gray-600">Check back later for more updates.</p>
+        </div>
+      </div>
     );
   }
 
+  const featuredPost = blogPosts[0];
+  const regularPosts = blogPosts.slice(1);
+
   return (
-    <div className="min-h-screen w-screen">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative text-white py-20">
+      <section className="relative text-white py-24 lg:py-32 overflow-hidden">
         <Image
           src="/herosetion/Blog.jpg"
           alt="Compliance Insights & Updates"
@@ -62,185 +143,171 @@ export default async function BlogPage() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              Compliance Insights & Updates
+          <div className="max-w-3xl">
+            <Badge className="bg-accent text-white mb-6 px-4 py-1.5 text-sm uppercase tracking-wider font-bold border-none">
+              Insights Hub
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+              Compliance Insights <br className="hidden md:block" /> & Updates
             </h1>
-            <p className="text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
               Stay informed with the latest compliance news, regulatory updates,
-              and expert insights to keep your business ahead of the curve.
+              and expert insights to keep your business ahead of the curve in the South African market.
             </p>
           </div>
         </div>
       </section>
 
       {/* Featured Post */}
-      <section className="py-16 bg-secondary-gray">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              <div className="bg-gradient-to-br from-primary to-primary-light p-8 lg:p-12 flex items-center">
-                <div>
-                  <div className="inline-block bg-accent text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
-                    Featured Article
+      {featuredPost && (
+        <section className="py-12 md:py-20 bg-secondary-gray">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="relative h-72 md:h-96 lg:h-full min-h-[300px]">
+                  <Image
+                    src={featuredPost.featured_image || `https://picsum.photos/seed/${featuredPost.id}/600/400`}
+                    alt={featuredPost.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-6 left-6">
+                    <Badge className="bg-accent text-white px-4 py-1.5 border-none shadow-lg">
+                      Featured Article
+                    </Badge>
                   </div>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                    {blogPosts[0].title}
-                  </h2>
-                  <p className="text-xl text-gray-200 mb-6">
-                    {blogPosts[0].excerpt}
-                  </p>
-                  <div className="flex items-center space-x-4 text-gray-200 mb-6">
-                    <div className="flex items-center space-x-2">
-                      <User className="h-4 w-4" />
-                      <span>{blogPosts[0].author_name}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>
-                        {new Date(blogPosts[0].created_at).toLocaleDateString(
-                          "en-ZA",
-                          {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          },
-                        )}
-                      </span>
-                    </div>
-                    <span>{blogPosts[0].read_time}</span>
-                  </div>
-                  <Link
-                    href={`/blog/${blogPosts[0].slug}`}
-                    className="inline-flex items-center bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-light transition-colors duration-200"
-                  >
-                    Read Article
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
                 </div>
-              </div>
-              <div className="p-8 lg:p-12 flex items-center">
-                <div className="relative w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                  {blogPosts[0].featured_image && (
-                    <Image
-                      src={blogPosts[0].featured_image}
-                      alt={blogPosts[0].title}
-                      fill
-                      className="rounded-lg object-cover"
-                    />
-                  )}
+                <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="h-4 w-4 text-accent" />
+                      {new Date(featuredPost.created_at).toLocaleDateString("en-ZA", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="h-4 w-4 text-accent" />
+                      {featuredPost.read_time}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-6 leading-tight">
+                    {featuredPost.title}
+                  </h2>
+                  
+                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <div className="flex flex-wrap items-center justify-between gap-6 mt-auto">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <User className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-primary">
+                          {featuredPost.author_name || "Bilacert Team"}
+                        </p>
+                        <p className="text-xs text-gray-500">Compliance Expert</p>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      href={`/blog/${featuredPost.slug}`}
+                      className="inline-flex items-center bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-accent-light transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                    >
+                      Read Full Article
+                      <ArrowRight className="h-5 w-5 ml-2" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Blog Posts Grid */}
-      <section className="py-20">
+      <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-              Latest Articles
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Expert insights and practical guidance to help you navigate South
-              African compliance requirements
-            </p>
-          </div>
-
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                className="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-200"
-              >
-                {category}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
+                Latest Articles
+              </h2>
+              <p className="text-lg text-gray-600">
+                Expert insights and practical guidance to help you navigate South
+                African compliance requirements with ease.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap gap-2">
+              {categories.slice(0, 4).map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className="px-5 py-2 rounded-full text-sm font-medium border border-gray-200 text-gray-600 hover:border-accent hover:text-accent transition-all"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.slice(1).map((post: BlogPost) => (
-              <Link
-                key={post.id}
-                href={`/blog/${post.slug}`}
-                className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
-              >
-                <div className=" relative h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
-                  {post.featured_image && (
-                    <Image
-                      src={post.featured_image}
-                      alt={post.title}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      className="rounded-lg"
-                    />
-                  )}
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">
-                      {post.category}
-                    </span>
-                    <span className="text-sm text-gray-500">
-                      {post.read_time}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-primary mb-3 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <div className="flex items-center space-x-2">
-                      <User className="h-4 w-4" />
-                      <span>{post.author_name}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>
-                        {new Date(post.created_at).toLocaleDateString("en-ZA", {
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {regularPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {regularPosts.map((post: BlogPost) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+              <p className="text-gray-500">More articles coming soon.</p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">Stay Updated</h2>
-          <p className="text-xl mb-8 text-gray-200">
+      <section className="py-20 md:py-28 bg-primary relative overflow-hidden">
+        {/* Background Pattern/Overlay */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <Badge className="bg-accent/20 text-accent-light border-accent/30 mb-6 px-4 py-1 border shadow-sm">
+            Newsletter
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-white leading-tight">
+            Stay Ahead of Regulatory Changes
+          </h2>
+          <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-2xl mx-auto">
             Subscribe to our newsletter for the latest compliance insights,
-            regulatory updates, and expert guidance delivered to your inbox.
+            regulatory updates, and expert guidance delivered straight to your inbox.
           </p>
-          <form className="max-w-md mx-auto flex gap-4">
+          <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
             <input
               type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:border-accent"
+              placeholder="Enter your email address"
+              className="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              required
             />
             <button
               type="submit"
-              className="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-light transition-colors duration-200"
+              className="bg-accent text-white px-8 py-4 rounded-full font-bold hover:bg-accent-light transition-all duration-300 shadow-lg hover:shadow-accent/20"
             >
-              Subscribe
+              Subscribe Now
             </button>
           </form>
+          <p className="mt-6 text-sm text-gray-400">
+            Join 500+ businesses receiving our weekly compliance updates.
+          </p>
         </div>
       </section>
     </div>
