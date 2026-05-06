@@ -60,7 +60,7 @@ export default async function ServicesPage() {
       {/* Hero Section */}
       <section className="relative text-white py-20">
         <Image
-          src="herosection/Services.jpg"
+          src="herosetion/Services.jpg"
           data-ai-hint="compliance document"
           alt="Bilacert Services"
           fill
